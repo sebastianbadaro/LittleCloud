@@ -17,14 +17,14 @@
     <th>Direccion</th>
     <th>Cumpleaños</th>
     <th>Genero</th>
+    <th># Compras</th>
+    <th>Total Gastado</th>
 
   </tr>
   </thead>
   <tbody>
     @foreach($clients as $client)
         <tr>
-
-
           <td>  {{ $client->lastname }} </td>
           <td>  {{ $client->firstname }} </td>
           <td>  {{ $client->email }} </td>
@@ -33,8 +33,8 @@
           <td>  {{ $client->address }} </td>
           <td>  {{ $client->birthdate }} </td>
           <td>  {{ $client->gender->name }} </td>
-
-
+          <td>  {{ $client->totalPurchases() }} </td>
+          <td>  ${{ $client->totalSpent() }} </td>
         </tr>
       @endforeach
 

@@ -19,3 +19,13 @@ Route::get('/', function () {
 //CLIENTE
 
 Route::get('/clientes/', 'ClientController@show')->name('show-clients');
+
+
+//VENTAS
+
+Route::get('/ventas/', 'SaleController@show')->name('show-sales');
+
+
+//PRODUCTOS
+
+Route::get('/productos/', 'ProductController@show')->name('show-product');

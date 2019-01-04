@@ -13,7 +13,7 @@ class CreateSaleDetailsTable extends Migration
      */
     public function up()
     {
-        Schema::create('saleDetails', function (Blueprint $table) {
+        Schema::create('product_sale', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('sale_id');
             $table->unsignedInteger('product_id');
@@ -38,6 +38,6 @@ class CreateSaleDetailsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('saleDetails');
+        Schema::dropIfExists('product_sale');
     }
 }

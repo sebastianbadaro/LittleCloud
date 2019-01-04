@@ -16,7 +16,7 @@ class SaleDetailsTableSeeder extends Seeder
       $faker = Faker::create();
       foreach (range(1,600) as $index)
       {
-          DB::table('saleDetails')->insert([
+          DB::table('product_sale')->insert([
               'sale_id' => rand(1,100),
               'product_id' => rand(1,5),
               'price' => rand(1,5),
