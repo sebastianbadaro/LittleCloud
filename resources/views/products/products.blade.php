@@ -23,7 +23,7 @@
         <tr>
           <td>  {{ $product->code }} </td>
           <td>  {{ $product->description }} </td>
-          <td>  {{ $product->price }} </td>
+          <td>  ${{ $product->price }} </td>
           <td>  {{ $product->size }} </td>
           <td>  {{ $product->stock }} </td>
 

@@ -10,7 +10,8 @@ class ProductController extends Controller
 {
   public function show()
   {
-    $products = Product::orderby('id')->with('sale')->get();
+    $products = Product::orderby('id')->get();
+    //dd($products);
     return view('products.products',compact('products'));
   }
 }
