@@ -11,9 +11,14 @@
   <tr>
     <th>Codigo</th>
     <th>Descripcion</th>
+    <th>Categoria</th>
     <th>Precio</th>
     <th>Talle</th>
+    <th>Marca</th>
+    <th>Genero</th>
+    <th>Temporada</th>
     <th>Stock disponible</th>
+    <th>Vendidos</th>
 
 
   </tr>
@@ -22,11 +27,15 @@
     @foreach($products as $product)
         <tr>
           <td>  {{ $product->code }} </td>
-          <td>  {{ $product->description }} </td>
+          <td>  {{ str_limit($product->description, $limit = 30, $end = '...') }} </td>
+          <td>  {{ $product->category->name }} </td>
           <td>  ${{ $product->price }} </td>
           <td>  {{ $product->size }} </td>
+          <td>  {{ $product->brand->name }} </td>
+          <td>  {{ $product->productGender->name }} </td>
+          <td>  {{ $product->season->name }} </td>
           <td>  {{ $product->stock }} </td>
-          <td>  {{ $product->timesSelled() }} </td>
+          <td>  {{ $product->timesSold() }} </td>
 
         </tr>
       @endforeach

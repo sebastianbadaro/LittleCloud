@@ -42,7 +42,7 @@
                   <tr>
                   @foreach ($sale->products as $product)
                     <td>  {{ $product->code }} </td>
-                    <td>  {{ $product->description }} </td>
+                    <td>  {{ str_limit($product->description, $limit = 30, $end = '...') }} </td>
                     <td>  {{ $product->pivot->amount }} </td>
                     <td>  ${{ $product->pivot->price }} </td>
                     </tr>
