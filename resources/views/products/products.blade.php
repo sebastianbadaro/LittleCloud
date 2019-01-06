@@ -26,6 +26,7 @@
           <td>  ${{ $product->price }} </td>
           <td>  {{ $product->size }} </td>
           <td>  {{ $product->stock }} </td>
+          <td>  {{ $product->timesSelled() }} </td>
 
         </tr>
       @endforeach
