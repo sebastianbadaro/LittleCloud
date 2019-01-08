@@ -1,65 +1,16 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-  </head>
-  <body>
 
-    <table id="example2" class="">
-  <thead>
-  <tr>
-    <th>ID</th>
-    <th>Cliente</th>
-    <th>Tipo de pago</th>
-    <th>Fecha</th>
-    <th>Total</th>
-    <th>Detalle</th>
+@extends('layouts.app')
+
+@section('title')
+  Ventas
+@endsection
 
 
-  </tr>
-  </thead>
-  <tbody>
-    @foreach($sales as $sale)
-      <tr>
-        <td>  {{ $sale->id }} </td>
-        <td>  {{ $sale->client->lastname }} {{ $sale->client->firstname }} </td>
-        <td>  {{ $sale->paymenttype->name }} </td>
-        <td>  {{ $sale->created_at }} </td>
-        <td>  ${{ $sale->totalAmount() }} </td>
-        <td>
-              <table>
-                <thead>
-                  <tr>
-                    <th>Codigo</th>
-                    <th>Descripcion</th>
-                    <th>Cantidad</th>
-                    <th>Precio</th>
-                  </tr>
-                </thead>
+@section('content')
 
-                <tbody>
-                  <tr>
-                  @foreach ($sale->products as $product)
-                    <td>  {{ $product->code }} </td>
-                    <td>  {{ str_limit($product->description, $limit = 30, $end = '...') }} </td>
-                    <td>  {{ $product->pivot->amount }} </td>
-                    <td>  ${{ $product->pivot->price }} </td>
-                    </tr>
-                  @endforeach
-                </tbody>
+  <h1>Ventas</h1>
+  {{-- <a class="float-right btn btn-success btn-lg" href="/admin/productos/agregar">Nuevo</a> --}}
+  <br>
+  @include('Sales.datatable')
 
-              </table>
-         </td>
-
-
-
-      </tr>
-    @endforeach
-
-  </tbody>
-</table>
-
-
-  </body>
-</html>
+@endsection

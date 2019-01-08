@@ -28,4 +28,8 @@ Route::get('/ventas/', 'SaleController@show')->name('show-sales');
 
 //PRODUCTOS
 
-Route::get('/productos/', 'ProductController@show')->name('show-product');
+Route::get('/productos/', 'ProductController@show')->name('show-products');
+
+//test
+
+Route::get('/test/', 'ProductController@test')->name('test');

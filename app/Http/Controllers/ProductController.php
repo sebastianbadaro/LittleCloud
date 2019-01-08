@@ -14,4 +14,9 @@ class ProductController extends Controller
     //dd($products);
     return view('products.products',compact('products'));
   }
+
+  public function test()
+  {
+    return view('layouts.home');
+  }
 }
