@@ -12,6 +12,7 @@
     <th>Genero</th>
     <th># Compras</th>
     <th>Total Gastado</th>
+    <th>Editar</th>
 
 
 @endsection
@@ -29,6 +30,7 @@
         <td>  {{ $client->gender->name }} </td>
         <td>  {{ $client->totalPurchases() }} </td>
         <td>  ${{ $client->totalSpent() }} </td>
+        <td class="text-center">  <a href="#" ><b class="fa fa-edit "></b></a> </td>
       </tr>
     @endforeach
 @endsection

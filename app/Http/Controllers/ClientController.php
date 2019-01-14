@@ -13,4 +13,90 @@ class ClientController extends Controller
     $clients = Client::orderby('lastname')->with('gender')->get();
     return view('clients.clients',compact('clients'));
   }
+
+  public function new()
+  {
+         $client = new Client();
+
+        $genders = Gender::all();
+      return view('clients.newClient',compact('client','genders'));
+  }
+
+  public function edit(Client $client)
+  {
+    $genders = Gender::all();
+  return view('clients.editClient',compact('client','genders'));
+  }
+
+  public function save(Request $request)
+  {
+    $this->validate(
+      $request,
+      [
+          'firstname' => 'required|max:60',
+          'lastname' => 'required|max:60',
+          'phone' => 'nullable|max:60',
+          'address'=> 'required|max:60',
+          'email'=> 'nullable|max:60',
+          'dni'=> 'required|max:60 ',
+          'birthdate'=> 'nullable|date',
+          'gender_id'=>'required|exists:genders,id',
+
+      ],
+      [
+
+      ],
+      [
+          'firstname' => 'nombre',
+          'lastname' => 'apellido',
+          'phone' => 'teléfono',
+          'address' => 'dirección',
+          'birthdate' => 'fecha de nacimiento',
+          'email' => 'email',
+          'gender_id' => 'genero',
+          'dni' => 'D.N.I',
+      ]
+  );
+  $client = new Client;
+  $client->fill($request->all());
+  $client->save();
+
+  return redirect('/admin/clientes/');
+  }
+
+  public function update(Client $client, Request $request)
+  {
+    $this->validate(
+      $request,
+      [
+          'firstname' => 'required|max:60',
+          'lastname' => 'required|max:60',
+          'phone' => 'nullable|max:60',
+          'address'=> 'required|max:60',
+          'email'=> 'nullable|max:60',
+          'dni'=> 'required|max:60 ',
+          'birthdate'=> 'nullable|date',
+          'gender_id'=>'required|exists:genders,id',
+
+      ],
+      [
+
+      ],
+      [
+          'firstname' => 'nombre',
+          'lastname' => 'apellido',
+          'phone' => 'teléfono',
+          'address' => 'dirección',
+          'birthdate' => 'fecha de nacimiento',
+          'email' => 'email',
+          'gender_id' => 'genero',
+          'dni' => 'D.N.I',
+      ]
+  );
+  
+  $client->fill($request->all());
+  $client->save();
+
+  return redirect('/admin/clientes/');
+  }
 }

@@ -19,6 +19,10 @@ Route::get('/', function () {
 //CLIENTE
 
 Route::get('/clientes/', 'ClientController@show')->name('show-clients');
+Route::get('/clientes/nuevo/', 'ClientController@new')->name('new-client');
+Route::post('/clientes/nuevo/', 'ClientController@save')->name('save-client');
+Route::get('/clientes/{client}/editar/', 'ClientController@edit')->name('edit-client');
+Route::put('/clientes/{client}/editar/', 'ClientController@update')->name('update-client');
 
 
 //VENTAS
@@ -30,6 +34,6 @@ Route::get('/ventas/', 'SaleController@show')->name('show-sales');
 
 Route::get('/productos/', 'ProductController@show')->name('show-products');
 
-//test
+//DASHBOARD
 
-Route::get('/test/', 'ProductController@test')->name('test');
+Route::get('/dashboard/', 'DashboardController@show')->name('dashboard');

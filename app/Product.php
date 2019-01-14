@@ -13,6 +13,16 @@ use App\ProductGender;
 
 class Product extends Model
 {
+  public static function valueOfStock()
+  {
+      return  DB::table('products')->where('stock','>',0)->sum(DB::raw('stock * price'));
+  }
+
+  public static function amountofItemsInStock()
+  {
+      return  DB::table('products')->where('stock','>',0)->sum(DB::raw('stock'));
+  }
+
   public function sales()
   {
     return $this->belongsToMany(Sale::class, 'product_sale', 'product_id', 'sale_id');

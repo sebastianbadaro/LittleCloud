@@ -9,6 +9,12 @@ use App\Gender;
 use App\Sale;
 class Client extends Model
 {
+protected $fillable = ['firstname','lastname','phone','address','dni','birthdate','gender_id','email'];
+
+public static function totalAmountOfClients(){
+   return  DB::table('clients')->count();
+}
+
   public function gender()
   {
       return $this->belongsTo(Gender::class,'gender_id');
