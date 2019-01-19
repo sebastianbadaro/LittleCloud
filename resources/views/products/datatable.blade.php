@@ -15,8 +15,8 @@
 
 @section('body')
   @foreach($products as $product)
-      <tr>
-        <td>  {{ $product->code }} </td>
+      <tr >
+        <td> <a class="fancybox" href="{{ route('detail-product', compact('product')) }}">{{ $product->code }}  </a>  </td>
         <td>  {{ str_limit($product->description, $limit = 30, $end = '...') }} </td>
         <td>  {{ $product->category->name }} </td>
         <td>  ${{ $product->price }} </td>

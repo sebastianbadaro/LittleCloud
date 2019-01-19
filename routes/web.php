@@ -33,6 +33,12 @@ Route::get('/ventas/', 'SaleController@show')->name('show-sales');
 //PRODUCTOS
 
 Route::get('/productos/', 'ProductController@show')->name('show-products');
+Route::get('/productos/agregar-stock', 'ProductController@addstock')->name('add-stock');
+Route::get('/productos/nuevo','ProductController@new')->name('new-product');
+Route::post('/productos/nuevo','ProductController@save')->name('save-product');
+Route::get('/productos/api/{code}','ProductController@showProductApi')->name('api-code-product');
+Route::get('/productos/{product}','ProductController@detail')->name('detail-product');
+
 
 //DASHBOARD
 

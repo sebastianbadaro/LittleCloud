@@ -16,16 +16,15 @@ class ClientController extends Controller
 
   public function new()
   {
-         $client = new Client();
-
-        $genders = Gender::all();
-      return view('clients.newClient',compact('client','genders'));
+    $client = new Client();
+    $genders = Gender::all();
+    return view('clients.newClient',compact('client','genders'));
   }
 
   public function edit(Client $client)
   {
     $genders = Gender::all();
-  return view('clients.editClient',compact('client','genders'));
+    return view('clients.editClient',compact('client','genders'));
   }
 
   public function save(Request $request)
@@ -93,7 +92,7 @@ class ClientController extends Controller
           'dni' => 'D.N.I',
       ]
   );
-  
+
   $client->fill($request->all());
   $client->save();
 

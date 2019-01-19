@@ -31,6 +31,7 @@
   <!-- bootstrap wysihtml5 - text editor -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap3-wysiwyg/0.3.3/bootstrap3-wysihtml5.min.css">
   <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.6/dist/jquery.fancybox.min.css" />
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -249,7 +250,7 @@
           <li class="header">MENÚ PRINCIPAL</li>
           {{--  --}}
           <li>
-            <a href="pages/widgets.html">
+            <a href="{{ route('dashboard') }}">
               <i class="fa fa-dashboard"></i> <span>Dashboard</span>
             </a>
           </li>
@@ -278,6 +279,7 @@
             </a>
             <ul class="treeview-menu">
             <li><a href="{{ route('show-products') }}"><i class="fa fa-search"></i> Consultar</a></li>
+            <li><a href="{{ route('add-stock') }}"><i class="fa fa-th"></i> Agregar Stock</a></li>
             </ul>
           </li>
 
@@ -406,6 +408,7 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.js"></script>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.2/jquery.fancybox.min.js"></script>
 <script type="text/javascript">
 $(document).ready( function () {
   $('#myTable').DataTable();
@@ -531,6 +534,22 @@ $(document).ready( function () {
     barChartOptions.datasetFill = false
     barChart.Bar(barChartData, barChartOptions)
   })
+</script>
+<script type="text/javascript">
+  window.addEventListener('load',function() {
+  	$(".fancybox").fancybox({
+  		maxWidth	: 1600,
+  		maxHeight	: 300,
+  		fitToView	: false,
+  		width		: '80%',
+  		height		: '50%',
+  		autoSize	: false,
+  		closeClick	: false,
+  		openEffect	: 'none',
+  		closeEffect	: 'none',
+      type: 'ajax'
+  	});
+  });
 </script>
 </body>
 </html>

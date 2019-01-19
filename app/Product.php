@@ -13,6 +13,10 @@ use App\ProductGender;
 
 class Product extends Model
 {
+
+  protected $fillable = ['code','price','size','description','ageTarget','stock','category_id','brand_id','productGender_id','season_id'];
+
+
   public static function valueOfStock()
   {
       return  DB::table('products')->where('stock','>',0)->sum(DB::raw('stock * price'));
