@@ -53,10 +53,11 @@ class ProductController extends Controller
 
   public function save(Request $request)
   {
+
     $this->validate(
       $request,
       [
-          'code' => 'required|max:60',
+          'code' => 'required|max:60|unique:products'  ,
           'price' => 'required|numeric',
           'size' => 'required|max:60',
           'description'=> 'required|max:60',
@@ -84,11 +85,18 @@ class ProductController extends Controller
         'productGender_id'=>'genero',
       ]
   );
-  $product = new Product;
-  $product->stock=0;
-  $product->fill($request->all());
-  $product->save();
+    $product = new Product;
+    $product->stock=0;
+    $product->fill($request->all());
+    $product->save();
 
-  return view('products.success');
+
+        return response($request, 200)
+                  ->header('Content-Type', 'text/plain');//Response::json($response);  // <<<<<<<<< see this line
+
+  }
+  public function success()
+  {
+      return view('products.success');
   }
 }
