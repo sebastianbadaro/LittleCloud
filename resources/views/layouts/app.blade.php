@@ -33,6 +33,8 @@
   <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.6/dist/jquery.fancybox.min.css" />
 
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
@@ -225,7 +227,7 @@
     <section class="sidebar">
       <!-- Sidebar user panel -->
 
-        <div class="user-panel">
+        {{-- <div class="user-panel">
           <div class="pull-left image">
             <img src="dist/img/avatar5.png" class="img-circle" alt="User Image">
           </div>
@@ -233,9 +235,9 @@
             <p>Seba</p>
             <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
           </div>
-        </div>
+        </div> --}}
         <!-- search form -->
-        <form action="#" method="get" class="sidebar-form">
+        {{-- <form action="#" method="get" class="sidebar-form">
           <div class="input-group">
             <input type="text" name="q" class="form-control" placeholder="Buscar...">
             <span class="input-group-btn">
@@ -243,7 +245,7 @@
                   </button>
                 </span>
           </div>
-        </form>
+        </form> --}}
         <!-- /.search form -->
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu" data-widget="tree">
@@ -294,17 +296,12 @@
             </a>
             <ul class="treeview-menu">
             <li><a href="{{ route('show-sales') }}"><i class="fa fa-search"></i> Consultar</a></li>
+            <li><a href="{{ route('new-sale') }}"><i class="fa fa-plus-circle"></i> Nueva</a></li>
             </ul>
           </li>
 
 
-          {{--  --}}
-          <li>
-            <a href="pages/widgets.html">
-              <i class="fa fa-cart-plus"></i> <span>Nueva Venta</span>
-            </a>
-          </li>
-          {{--  --}}
+
           <li>
             <a href="pages/widgets.html">
               <i class="fa fa-th"></i> <span>Consultar Producto</span>
@@ -409,9 +406,14 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.js"></script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.2/jquery.fancybox.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
 <script type="text/javascript">
 $(document).ready( function () {
   $('#myTable').DataTable();
+    $('.js-example-basic-single').select2({
+      placeholder: 'Select an option'
+      });
 } );
 
   $(function () {

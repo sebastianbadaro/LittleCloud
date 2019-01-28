@@ -32,7 +32,7 @@
           </div>
           <div class="col-sm-6">
             <button type="button" onclick="llamada()" class="btn btn-success"name="button">Agregar al stock</button>
-            <a class="fancybox" id="newProduct" href="{{ route('new-product') }}">nuevo producto</a>
+            {{-- <a class="fancybox" id="newProduct" href="{{ route('new-product') }}">nuevo producto</a> --}}
           </div>
         </div>
       </div>

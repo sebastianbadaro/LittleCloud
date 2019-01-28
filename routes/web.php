@@ -28,6 +28,7 @@ Route::put('/clientes/{client}/editar/', 'ClientController@update')->name('updat
 //VENTAS
 
 Route::get('/ventas/', 'SaleController@show')->name('show-sales');
+Route::get('/ventas/nuevo/', 'SaleController@new')->name('new-sale');
 
 
 //PRODUCTOS
