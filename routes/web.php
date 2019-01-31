@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('layouts/welcome');
 });
 
 
@@ -46,3 +46,8 @@ Route::get('/productos/{product}','ProductController@detail')->name('detail-prod
 //DASHBOARD
 
 Route::get('/dashboard/', 'DashboardController@show')->name('dashboard');
+
+Auth::routes();
+
+
+Route::get('/home', 'HomeController@index')->name('home');
