@@ -30,7 +30,7 @@
         <td>  {{ $client->gender->name }} </td>
         <td>  {{ $client->totalPurchases() }} </td>
         <td>  ${{ $client->totalSpent() }} </td>
-        <td class="text-center">  <a href="#" ><b class="fa fa-edit "></b></a> </td>
+        <td class="text-center">  <a href={!! route('edit-client',compact('client')) !!} ><b class="fa fa-edit "></b></a> </td>
       </tr>
     @endforeach
 @endsection

@@ -8,6 +8,10 @@ use App\Client;
 
 class SaleController extends Controller
 {
+  public function __construct()
+  {
+      $this->middleware('auth');
+  }
   public function show()
   {
     //dd(Sale::find(1)->products()->get());
