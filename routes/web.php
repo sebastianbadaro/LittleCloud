@@ -39,6 +39,7 @@ Route::get('/productos/exito', 'ProductController@success')->name('product-succe
 
 Route::get('/productos/nuevo','ProductController@new')->name('new-product');
 Route::post('/productos/nuevo','ProductController@save')->name('save-product');
+Route::get('/productos/apiaddone/{code}','ProductController@showProductApiAndSum1')->name('api-code-product-sum1');
 Route::get('/productos/api/{code}','ProductController@showProductApi')->name('api-code-product');
 Route::get('/productos/{product}','ProductController@detail')->name('detail-product');
 

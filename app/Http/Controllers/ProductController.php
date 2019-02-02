@@ -24,7 +24,7 @@ class ProductController extends Controller
     return view('products.addstock');
   }
 
-  public function showProductApi($code)
+  public function showProductApiAndSum1($code)
 
   {
 
@@ -32,6 +32,11 @@ class ProductController extends Controller
 
     $product->stock = $product->stock+1;
     $product->save();
+    return $product->toJson();
+  }
+  public function showProductApi($code)
+  {
+    $product = Product::where('code',$code)->first();
     return $product->toJson();
   }
 

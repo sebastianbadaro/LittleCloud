@@ -99,7 +99,7 @@
     var codigo = $('#code').val();
     //console.log('lala:'+codigo);
     $.ajax({
-      url:'/productos/api/'+codigo,
+      url:'/productos/apiaddone/'+codigo,
 
       success:function(data){
         //console.log(data);
