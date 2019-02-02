@@ -91,14 +91,14 @@ var agregarlog = function (data) {
       index=index+1;
 
       $('tbody').prepend('<tr id="product'+index+'">')
-      $('#product'+index).prepend('<td class="text-center">  <button onclick="deleteLine('+index+')"class="btn btn-danger"type="button" name="button"><i class="fa fa-trash"></i></button></td>')
+      $('#product'+index).prepend('<td class="text-center">  <button onclick="deleteLine('+index+','+res.price+')"class="btn btn-danger"type="button" name="button"><i class="fa fa-trash"></i></button></td>')
       $('#product'+index).prepend('<td>'+res.price+'</td>')
       $('#product'+index).prepend('<td>'+res.size+'</td>')
       $('#product'+index).prepend('<td>'+res.description+'</td>')
       $('#product'+index).prepend('<td><a class="fancybox" href="/productos/'+res.id+'">'+res.code+'</a></td>')
 
       total=total+res.price;
-      $('#total').val("$"+total);
+      $('#total').val("$"+total.toFixed(2));
 
       $(".fancybox").fancybox({
         maxWidth	: 1600,
@@ -115,9 +115,11 @@ var agregarlog = function (data) {
 
 }
 
-var deleteLine = function(index){
+var deleteLine = function(index,price){
 
   $('#product'+index).remove();
+  total=total-price;
+  $('#total').val("$"+total.toFixed(2));
 }
 
 
