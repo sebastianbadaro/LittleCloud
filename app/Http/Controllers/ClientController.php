@@ -8,6 +8,10 @@ use App\Gender;
 
 class ClientController extends Controller
 {
+  public function __construct()
+  {
+      $this->middleware('auth');
+  }
   public function show()
   {
     $clients = Client::orderby('lastname')->with('gender')->get();
@@ -60,7 +64,7 @@ class ClientController extends Controller
   $client->fill($request->all());
   $client->save();
 
-  return redirect('/admin/clientes/');
+  return redirect('/clientes/');
   }
 
   public function update(Client $client, Request $request)
@@ -96,6 +100,6 @@ class ClientController extends Controller
   $client->fill($request->all());
   $client->save();
 
-  return redirect('/admin/clientes/');
+  return redirect('/clientes/');
   }
 }

@@ -70,15 +70,12 @@
           <!-- User Account: style can be found in dropdown.less -->
           @guest
             <li class="nav-item">
-                <a class="nav-link" href=""></a>
-            </li>
-            <li class="nav-item">
-                @if (Route::has('register'))
-                    <a class="nav-link" href="">Registrar</a>
+                @if (Route::has('login'))
+                    <a class="nav-link" href={!! route('login') !!}>Iniciar Sesión</a>
                 @endif
             </li>
           @else
-            <li class="dropdown messages-menu">
+            {{-- <li class="dropdown messages-menu">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 <i class="fa fa-envelope-o"></i>
                 <span class="label label-success">1</span>
@@ -106,7 +103,7 @@
                 </li>
                 <li class="footer"><a href="#">Ver todos los mensajes</a></li>
               </ul>
-            </li>
+            </li> --}}
             <!-- Notifications: style can be found in dropdown.less -->
             <li class="dropdown notifications-menu">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -114,13 +111,13 @@
                 <span class="label label-warning">1</span>
               </a>
               <ul class="dropdown-menu">
-                <li class="header">Tenes 1 notificación</li>
+                <li class="header">Tenés 1 notificación</li>
                 <li>
                   <!-- inner menu: contains the actual data -->
                   <ul class="menu">
                     <li>
                       <a href="#">
-                        <i class="fa fa-users text-aqua"></i> 5 new members joined today
+                        <i class="fa fa-exclamation text-aqua"></i> Te estás quedando sin stock de remeras
                       </a>
                     </li>
                   </ul>
@@ -129,7 +126,7 @@
               </ul>
             </li>
             <!-- Tasks: style can be found in dropdown.less -->
-            <li class="dropdown tasks-menu">
+            {{-- <li class="dropdown tasks-menu">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 <i class="fa fa-flag-o"></i>
                 <span class="label label-danger">1</span>
@@ -160,16 +157,16 @@
                   <a href="#">Ver todas las tareas</a>
                 </li>
               </ul>
-            </li>
+            </li> --}}
             <li class="dropdown user user-menu">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                <img src="dist/img/avatar5.png" class="user-image" alt="User Image">
+                <i class="fa fa-user-o"></i>
                 <span class="hidden-xs">Seba</span>
               </a>
               <ul class="dropdown-menu">
                 <!-- User image -->
                 <li class="user-header">
-                  <img src="dist/img/avatar5.png" class="img-circle" alt="User Image">
+                  <img src="\img\avatar.svg" class="img-circle" alt="User Image">
 
                   <p>
                     Seba - Web Developer
@@ -180,13 +177,10 @@
                 <li class="user-body">
                   <div class="row">
                     <div class="col-xs-4 text-center">
-                      <a href="#">Followers</a>
+                      <a href="#">Ventas</a>
                     </div>
-                    <div class="col-xs-4 text-center">
-                      <a href="#">Sales</a>
-                    </div>
-                    <div class="col-xs-4 text-center">
-                      <a href="#">Friends</a>
+                    <div class="col-xs-8 text-center">
+                      <a href="#">Estadísticas de Uso</a>
                     </div>
                   </div>
                   <!-- /.row -->
@@ -194,19 +188,17 @@
                 <!-- Menu Footer-->
                 <li class="user-footer">
                   <div class="pull-left">
-                    <a href="#" class="btn btn-default btn-flat">Profile</a>
+                    <a href="#" class="btn btn-default btn-flat">Perfil</a>
                   </div>
                   <div class="pull-right">
 
-                        <a class="btn btn-default btn-flat" href=""
-                           onclick="event.preventDefault();
-                                         document.getElementById('logout-form').submit();">
-                            {{ __('Logout') }}
-                        </a>
-
-                        <form id="logout-form" action="" method="POST" style="display: none;">
-                            @csrf
-                        </form>
+                    <a class="nav-link" href="{{ route('logout') }}"
+                         onclick="event.preventDefault();
+                                 document.getElementById('logout-form').submit();"> {{ __('Cerrar Sesión') }}
+                    </a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
 
                   </div>
                 </li>
@@ -224,94 +216,99 @@
   <!-- Left side column. contains the logo and sidebar -->
   <aside class="main-sidebar">
     <!-- sidebar: style can be found in sidebar.less -->
-    <section class="sidebar">
-      <!-- Sidebar user panel -->
+    @guest
+      iniciar sesion
+    @else
+      <section class="sidebar">
+        <!-- Sidebar user panel -->
 
-        {{-- <div class="user-panel">
-          <div class="pull-left image">
-            <img src="dist/img/avatar5.png" class="img-circle" alt="User Image">
-          </div>
-          <div class="pull-left info">
-            <p>Seba</p>
-            <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
-          </div>
-        </div> --}}
-        <!-- search form -->
-        {{-- <form action="#" method="get" class="sidebar-form">
-          <div class="input-group">
-            <input type="text" name="q" class="form-control" placeholder="Buscar...">
-            <span class="input-group-btn">
-                  <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
-                  </button>
+          {{-- <div class="user-panel">
+            <div class="pull-left image">
+              <img src="dist/img/avatar5.png" class="img-circle" alt="User Image">
+            </div>
+            <div class="pull-left info">
+              <p>Seba</p>
+              <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+            </div>
+          </div> --}}
+          <!-- search form -->
+          {{-- <form action="#" method="get" class="sidebar-form">
+            <div class="input-group">
+              <input type="text" name="q" class="form-control" placeholder="Buscar...">
+              <span class="input-group-btn">
+                    <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
+                    </button>
+                  </span>
+            </div>
+          </form> --}}
+          <!-- /.search form -->
+          <!-- sidebar menu: : style can be found in sidebar.less -->
+          <ul class="sidebar-menu" data-widget="tree">
+            <li class="header">MENÚ PRINCIPAL</li>
+            {{--  --}}
+            <li>
+              <a href="{{ route('dashboard') }}">
+                <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+              </a>
+            </li>
+            {{--  --}}
+            <li class=" treeview">
+              <a href="#">
+                <i class="fa fa-users"></i> <span>Clientes</span>
+                <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right"></i>
                 </span>
-          </div>
-        </form> --}}
-        <!-- /.search form -->
-        <!-- sidebar menu: : style can be found in sidebar.less -->
-        <ul class="sidebar-menu" data-widget="tree">
-          <li class="header">MENÚ PRINCIPAL</li>
-          {{--  --}}
-          <li>
-            <a href="{{ route('dashboard') }}">
-              <i class="fa fa-dashboard"></i> <span>Dashboard</span>
-            </a>
-          </li>
-          {{--  --}}
-          <li class=" treeview">
-            <a href="#">
-              <i class="fa fa-users"></i> <span>Clientes</span>
-              <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-              </span>
-            </a>
-            <ul class="treeview-menu">
-              <li><a href="{{ route('show-clients') }}"><i class="fa fa-search"></i> Consultar</a></li>
-              <li><a href="{{ route('new-client') }}"><i class="fa fa-plus-circle "></i> Nuevo</a></li>
-            </ul>
-          </li>
+              </a>
+              <ul class="treeview-menu">
+                <li><a href="{{ route('show-clients') }}"><i class="fa fa-search"></i> Consultar</a></li>
+                <li><a href="{{ route('new-client') }}"><i class="fa fa-plus-circle "></i> Nuevo</a></li>
+              </ul>
+            </li>
 
 
-          {{--  --}}
-          <li class=" treeview">
-            <a href="#">
-              <i class="fa fa-gift"></i> <span>Productos</span>
-              <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-              </span>
-            </a>
-            <ul class="treeview-menu">
-            <li><a href="{{ route('show-products') }}"><i class="fa fa-search"></i> Consultar</a></li>
-            <li><a href="{{ route('add-stock') }}"><i class="fa fa-th"></i> Agregar Stock</a></li>
-            </ul>
-          </li>
+            {{--  --}}
+            <li class=" treeview">
+              <a href="#">
+                <i class="fa fa-gift"></i> <span>Productos</span>
+                <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right"></i>
+                </span>
+              </a>
+              <ul class="treeview-menu">
+              <li><a href="{{ route('show-products') }}"><i class="fa fa-search"></i> Consultar</a></li>
+              <li><a href="{{ route('add-stock') }}"><i class="fa fa-th"></i> Agregar Stock</a></li>
+              </ul>
+            </li>
 
 
-          {{--  --}}
-          <li class=" treeview">
-            <a href="#">
-              <i class="fa fa-shopping-cart"></i> <span>Ventas</span>
-              <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-              </span>
-            </a>
-            <ul class="treeview-menu">
-            <li><a href="{{ route('show-sales') }}"><i class="fa fa-search"></i> Consultar</a></li>
-            <li><a href="{{ route('new-sale') }}"><i class="fa fa-plus-circle"></i> Nueva</a></li>
-            </ul>
-          </li>
+            {{--  --}}
+            <li class=" treeview">
+              <a href="#">
+                <i class="fa fa-shopping-cart"></i> <span>Ventas</span>
+                <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right"></i>
+                </span>
+              </a>
+              <ul class="treeview-menu">
+              <li><a href="{{ route('show-sales') }}"><i class="fa fa-search"></i> Consultar</a></li>
+              <li><a href="{{ route('new-sale') }}"><i class="fa fa-plus-circle"></i> Nueva</a></li>
+              </ul>
+            </li>
 
 
 
-          <li>
-            <a href="pages/widgets.html">
-              <i class="fa fa-th"></i> <span>Consultar Producto</span>
-            </a>
-          </li>
+            <li>
+              <a href="pages/widgets.html">
+                <i class="fa fa-th"></i> <span>Consultar Producto</span>
+              </a>
+            </li>
 
 
 
 
-    </section>
+      </section>
+    @endguest
+
     <!-- /.sidebar -->
   </aside>
 
