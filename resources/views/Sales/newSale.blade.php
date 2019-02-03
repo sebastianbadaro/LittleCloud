@@ -13,7 +13,7 @@
         <h3 class="box-title">Nueva venta</h3>
       </div>
           @include('errors.errors')
-          <form  method="POST" name='editClient'>
+          <form  id="newSaleForm" method="POST" name='newSale'>
             {{ method_field('post') }}
             <div class="box-body">
               <div class="row">
@@ -25,7 +25,7 @@
 
             <div class="box-footer">
 
-              <input class="btn btn-primary" type="submit" value="Vender" name="submit"/>
+              <input class="btn btn-primary" type="submit" value="Vender" name=""/>
             </div>
       </form>
     </div>

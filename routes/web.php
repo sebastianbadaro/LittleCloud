@@ -29,6 +29,7 @@ Route::put('/clientes/{client}/editar/', 'ClientController@update')->name('updat
 
 Route::get('/ventas/', 'SaleController@show')->name('show-sales');
 Route::get('/ventas/nuevo/', 'SaleController@new')->name('new-sale');
+Route::post('/ventas/nuevo/', 'SaleController@save')->name('save-sale');
 
 
 //PRODUCTOS
