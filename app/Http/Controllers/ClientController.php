@@ -102,4 +102,8 @@ class ClientController extends Controller
 
   return redirect('/clientes/');
   }
+  public function detail(Client $client)
+  {
+    return view('clients.detail',compact('client'));
+  }
 }

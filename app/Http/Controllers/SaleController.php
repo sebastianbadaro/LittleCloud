@@ -52,4 +52,9 @@ class SaleController extends Controller
       $sales = Sale::orderby('created_at','DESC')->with('client')->with('paymenttype')->get();
       return view('Sales.sales',compact('sales'));
   }
+  public function detail(Sale $sale)
+  {
+    // dd($sale->id);
+  return view('Sales.details',compact('sale'));
+  }
 }

@@ -23,13 +23,14 @@ Route::get('/clientes/nuevo/', 'ClientController@new')->name('new-client');
 Route::post('/clientes/nuevo/', 'ClientController@save')->name('save-client');
 Route::get('/clientes/{client}/editar/', 'ClientController@edit')->name('edit-client');
 Route::put('/clientes/{client}/editar/', 'ClientController@update')->name('update-client');
-
+Route::get('/clientes/{client}','ClientController@detail')->name('detail-client');
 
 //VENTAS
 
 Route::get('/ventas/', 'SaleController@show')->name('show-sales');
 Route::get('/ventas/nuevo/', 'SaleController@new')->name('new-sale');
 Route::post('/ventas/nuevo/', 'SaleController@save')->name('save-sale');
+Route::get('/ventas/{sale}','SaleController@detail')->name('detail-sale');
 
 
 //PRODUCTOS

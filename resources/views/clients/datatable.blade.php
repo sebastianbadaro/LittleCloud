@@ -19,7 +19,7 @@
 
 @section('body')
   @foreach($clients as $client)
-      <tr>
+      <tr class="fancybox" href="{{ route('detail-client', compact('client')) }}">
         <td>  {{ $client->lastname }} </td>
         <td>  {{ $client->firstname }} </td>
         <td>  {{ $client->email }} </td>

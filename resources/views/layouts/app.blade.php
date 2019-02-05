@@ -538,11 +538,12 @@ $(document).ready( function () {
   window.addEventListener('load',function() {
   	$(".fancybox").fancybox({
   		maxWidth	: 1600,
+      minWidth	: 1000,
   		maxHeight	: 300,
-  		fitToView	: false,
-  		width		: '80%',
+  		fitToView	: true,
+  		width		: '100%',
   		height		: '50%',
-  		autoSize	: false,
+  		autoSize	: true,
   		closeClick	: false,
   		openEffect	: 'none',
   		closeEffect	: 'none',
