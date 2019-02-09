@@ -1,4 +1,4 @@
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.min.js"></script>
 @extends('layouts.app')
 
 @section('title')
@@ -87,29 +87,110 @@
     <!-- ./col -->
   </div>
 
-  <!-- DONUT CHART -->
-  <div class="box box-danger">
-    <div class="box-header with-border">
-      <h3 class="box-title">Donut Chart</h3>
 
-      <div class="box-tools pull-right">
-        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-        </button>
-        <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+  <div class="col-lg-6 col-xs-12">
+    <!-- DONUT CHART -->
+    <div class="box box-danger">
+      <div class="box-header with-border">
+        <h3 class="box-title">Stock por Categoria</h3>
+
+        <div class="box-tools pull-right">
+          <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+          </button>
+          <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+        </div>
       </div>
+      <div class="box-body">
+        <canvas id="categorychart" width="200" height="200"></canvas>
+      </div>
+      <!-- /.box-body -->
     </div>
-    <div class="box-body">
-      <canvas id="pieChart" style="height:250px"></canvas>
+  </div>
+
+  <div class="col-lg-6 col-xs-12">
+    <!-- DONUT CHART -->
+    <div class="box box-danger">
+      <div class="box-header with-border">
+        <h3 class="box-title">Stock por Marca</h3>
+
+        <div class="box-tools pull-right">
+          <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+          </button>
+          <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+        </div>
+      </div>
+      <div class="box-body">
+        <canvas id="brandChart" width="200" height="200"></canvas>
+      </div>
+      <!-- /.box-body -->
     </div>
-    <!-- /.box-body -->
   </div>
   <!-- /.box -->
 
-</div>
-<!-- /.col (LEFT) -->
-<div class="col-md-6">
+  <script>
+  var ctx = document.getElementById("brandChart").getContext('2d');
+  var myChart = new Chart(ctx, {
+      type: 'pie',
+      data: {
+          labels: {!!json_encode($brands->pluck("name"))!!},
+          datasets: [{
+              label: '# of Votes',
+              data: {!!json_encode($brands->pluck("count"))!!},
+              backgroundColor: [
+                  'rgba(255, 99, 132, 1)',
+                  'rgba(54, 162, 235, 1)',
+                  'rgba(255, 206, 86, 1)',
 
 
+              ],
+              borderColor: [
+                  'rgba(255,99,132,1)',
+                  'rgba(54, 162, 235, 1)',
+                  'rgba(255, 206, 86, 1)',
+                  'rgba(75, 192, 192, 1)',
+                  'rgba(153, 102, 255, 1)',
 
+              ],
+              borderWidth: 1
+          }]
+      },
+      options: {
+        
+      }
+  });
+  </script>
+  <script>
+  var ctx = document.getElementById("categorychart").getContext('2d');
+  var myChart = new Chart(ctx, {
+      type: 'doughnut',
+      data: {
+          labels: {!!json_encode($categorias->pluck("name"))!!},
+          datasets: [{
+              label: '# of Votes',
+              data: {!!json_encode($categorias->pluck("count"))!!},
+              backgroundColor: [
+                  'rgba(54, 162, 235, 1)',
+                  'rgba(255, 206, 86, 1)',
+                  'rgba(255, 99, 132, 1)',
+                  'rgba(75, 192, 192, 1)',
+                  'rgba(153, 102, 255, 1)',
+
+              ],
+              borderColor: [
+                  'rgba(255,99,132, 1)',
+                  'rgba(54, 162, 235, 1)',
+                  'rgba(255, 206, 86, 1)',
+                  'rgba(75, 192, 192, 1)',
+                  'rgba(153, 102, 255, 1)',
+
+              ],
+              borderWidth: 1
+          }]
+      },
+      options: {
+
+      }
+  });
+  </script>
 
 @endsection
