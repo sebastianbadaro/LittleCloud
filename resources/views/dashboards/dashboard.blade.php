@@ -25,7 +25,7 @@
 <section class="content">
   <!-- Small boxes (Stat box) -->
   <div class="row">
-    <div class="col-lg-3 col-xs-6">
+    <div class="col-md-4 col-xs-12">
       <!-- small box -->
       <div class="small-box bg-aqua">
         <div class="inner">
@@ -40,7 +40,7 @@
       </div>
     </div>
     <!-- ./col -->
-    <div class="col-lg-3 col-xs-6">
+    <div class="col-md-4 col-xs-6">
       <!-- small box -->
       <div class="small-box bg-green">
         <div class="inner">
@@ -55,7 +55,7 @@
       </div>
     </div>
     <!-- ./col -->
-    <div class="col-lg-3 col-xs-6">
+    <div class="col-md-4 col-xs-6">
       <!-- small box -->
       <div class="small-box bg-yellow">
         <div class="inner">
@@ -70,25 +70,10 @@
       </div>
     </div>
     <!-- ./col -->
-    <div class="col-lg-3 col-xs-6">
-      <!-- small box -->
-      <div class="small-box bg-red">
-        <div class="inner">
-          <h3>65</h3>
-
-          <p>Unique Visitors</p>
-        </div>
-        <div class="icon">
-          <i class="ion ion-pie-graph"></i>
-        </div>
-        <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-      </div>
-    </div>
-    <!-- ./col -->
-  </div>
 
 
-  <div class="col-lg-6 col-xs-12">
+
+  <div class="col-md-4 col-xs-12">
     <!-- DONUT CHART -->
     <div class="box box-danger">
       <div class="box-header with-border">
@@ -107,7 +92,7 @@
     </div>
   </div>
 
-  <div class="col-lg-6 col-xs-12">
+  <div class="col-md-4 col-xs-12">
     <!-- DONUT CHART -->
     <div class="box box-danger">
       <div class="box-header with-border">
@@ -121,6 +106,26 @@
       </div>
       <div class="box-body">
         <canvas id="brandChart" width="200" height="200"></canvas>
+      </div>
+      <!-- /.box-body -->
+    </div>
+  </div>
+  <!-- /.box -->
+
+  <div class="col-md-4 col-xs-12">
+    <!-- DONUT CHART -->
+    <div class="box box-danger">
+      <div class="box-header with-border">
+        <h3 class="box-title">Clientes por Genero</h3>
+
+        <div class="box-tools pull-right">
+          <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+          </button>
+          <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+        </div>
+      </div>
+      <div class="box-body">
+        <canvas id="genderChart" width="50" height="50"></canvas>
       </div>
       <!-- /.box-body -->
     </div>
@@ -155,7 +160,7 @@
           }]
       },
       options: {
-        
+
       }
   });
   </script>
@@ -189,6 +194,39 @@
       },
       options: {
 
+      }
+  });
+  </script>
+
+  <script>
+  var ctx = document.getElementById("genderChart").getContext('2d');
+  var myChart = new Chart(ctx, {
+      type: 'doughnut',
+      data: {
+          labels: {!!json_encode($genders->pluck("name"))!!},
+          datasets: [{
+              label: '# de clientes',
+              data: {!!json_encode($genders->pluck("count"))!!},
+              backgroundColor: [
+                  'rgba(255, 99, 132, 1)',
+                  'rgba(54, 162, 235, 1)',
+                  'rgba(255, 206, 86, 1)',
+
+
+              ],
+              borderColor: [
+                  'rgba(255,99,132,1)',
+                  'rgba(54, 162, 235, 1)',
+                  'rgba(255, 206, 86, 1)',
+
+
+              ],
+              borderWidth: 1
+          }]
+      },
+      options: {
+        circumference: Math.PI,
+        rotation: Math.PI
       }
   });
   </script>

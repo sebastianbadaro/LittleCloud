@@ -27,11 +27,17 @@ class DashboardController extends Controller
             ->select(DB::raw('brands.name, sum(products.stock) as count'))
             ->groupBy('brands.name')
             ->get();
+    $genders = DB::table('genders')
+            ->join('clients', 'genders.id', '=', 'clients.gender_id')
+            ->select(DB::raw('genders.name, count(*) as count'))
+            ->groupBy('genders.name')
+            ->get();
+
 
     // dd($categorias);
     $totalValueOfStock= Product::valueOfStock();
     $amountofItemsInStock = Product::amountofItemsInStock();
     $totalAmountOfClients = Client::totalAmountOfClients();
-    return view('dashboards.dashboard',compact('totalValueOfStock','amountofItemsInStock','totalAmountOfClients','categorias','brands'));
+    return view('dashboards.dashboard',compact('totalValueOfStock','amountofItemsInStock','totalAmountOfClients','categorias','brands','genders'));
   }
 }
