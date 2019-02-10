@@ -407,11 +407,18 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
 <script type="text/javascript">
 $(document).ready( function () {
-  $('#myTable').DataTable();
-    $('.js-example-basic-single').select2({
-      placeholder: 'Select an option'
-      });
+  $('#myTable').DataTable( {
+        "scrollX": true,
+        "select": true,
+        "responsive": true
+    } );
+
+
 } );
+$('.js-example-basic-single').select2({
+  placeholder: 'Select an option'
+  });
+
 </script>
 <script type="text/javascript">
   window.addEventListener('load',function() {
