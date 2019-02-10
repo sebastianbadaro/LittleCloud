@@ -297,11 +297,7 @@
 
 
 
-            <li>
-              <a href="pages/widgets.html">
-                <i class="fa fa-th"></i> <span>Consultar Producto</span>
-              </a>
-            </li>
+          
 
 
 
