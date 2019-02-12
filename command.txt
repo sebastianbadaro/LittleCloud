@@ -1,0 +1,5 @@
+load data local infile 'productExport.csv' into table products
+ fields terminated by ','
+ enclosed by '"'
+ lines terminated by '\n'
+ (code, price, size, description, stock, brand_id,season_id, productGender_id)

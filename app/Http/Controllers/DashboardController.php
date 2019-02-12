@@ -23,21 +23,28 @@ class DashboardController extends Controller
             ->join('products', 'categories.id', '=', 'products.category_id')
             ->select(DB::raw('categories.name, sum(products.stock) as count'))
             ->groupBy('categories.name')
+            ->orderby('count','DESC')
+            ->havingRaw('count > 0')
             ->get();
     $brands = DB::table('brands')
             ->join('products', 'brands.id', '=', 'products.brand_id')
             ->select(DB::raw('brands.name, sum(products.stock) as count'))
             ->groupBy('brands.name')
+            ->orderby('count','DESC')
+            ->havingRaw('count > 0')
             ->get();
     $genders = DB::table('genders')
             ->join('clients', 'genders.id', '=', 'clients.gender_id')
             ->select(DB::raw('genders.name, count(*) as count'))
             ->groupBy('genders.name')
+            ->orderby('count','DESC')
             ->get();
     $paymentTypes = DB::table('sales')
             ->join('payment_types', 'payment_types.id', '=', 'sales.paymentType_id')
             ->select(DB::raw('payment_types.name, count(*) as count'))
             ->groupBy('payment_types.name')
+            ->orderby('count','DESC')
+            ->havingRaw('count > 0')
             ->get();
 
     // dd($categorias);

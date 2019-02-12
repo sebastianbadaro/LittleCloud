@@ -161,7 +161,7 @@ var deleteLine = function(index,price){
 
 var llamada = function() {
  var codigo = $('#code').val();
- //console.log('lala:'+codigo);
+ codigo = codigo.replace("%", "%25"); //para escapar los codigos con %
  $.ajax({
    url:'/productos/api/'+codigo,
 
