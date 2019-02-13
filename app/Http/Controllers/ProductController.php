@@ -52,6 +52,7 @@ class ProductController extends Controller
   public function new()
   {
     $product = new Product();
+    $product->stock=0;
     $categories= Category::orderby('name')->get();
     $brands= Brand::orderby('name')->get();
     $seasons= Season::orderby('name')->get();
@@ -76,6 +77,7 @@ class ProductController extends Controller
           'brand_id'=>'required|exists:brands,id',
           'season_id'=>'required|exists:seasons,id',
           'productGender_id'=>'required|exists:productgenders,id',
+          'stock'=>'required| numeric|min:0',
 
       ],
       [
@@ -92,10 +94,10 @@ class ProductController extends Controller
         'brand_id'=>'marca',
         'season_id'=>'temporada',
         'productGender_id'=>'genero',
+        'stock'=>'stock',
       ]
   );
     $product = new Product;
-    $product->stock=0;
     $product->fill($request->all());
     $product->save();
 

@@ -157,3 +157,14 @@
               </select>
             </div>
           </div>
+          <div class="form-group ">
+             <label for="name" class="col-sm-2 control-label">Stock Inicial: </label>
+             <div class="col-sm-10">
+               <div class=" input-group">
+                 <div class="input-group-addon">
+                   <i class="fa fa-hashtag"></i>
+                 </div>
+                 <input class="form-control" type="number" min="0" name="stock" id="stock" value="{{ old('stock',$product->stock)}}" placeholder="0"/>
+               </div>
+             </div>
+            </div>
