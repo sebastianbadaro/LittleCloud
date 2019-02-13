@@ -25,7 +25,7 @@ use Carbon\Carbon;
                 'description' => $faker->sentence(6,true),
                 'ageTarget' =>  rand(0,12),
                 'category_id' =>  rand(1,5),
-                'brand_id' =>  rand(1,3),
+                'brand_id' =>  rand(1,12),
                 'season_id' =>  rand(1,2),
                 'productGender_id' =>  rand(1,3),
                 'stock' =>  rand(1,10),
