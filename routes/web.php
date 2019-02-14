@@ -16,6 +16,16 @@ Route::get('/', function () {
 });
 
 
+//CATEGORIAS
+
+Route::get('/categorias/', 'CategoryController@show')->name('show-categories');
+Route::get('/categorias/nueva/', 'CategoryController@new')->name('new-category');
+Route::post('/categorias/nueva/', 'CategoryController@save')->name('save-category');
+Route::get('/categorias/{category}/editar/', 'CategoryController@edit')->name('edit-category');
+Route::put('/categorias/{category}/editar/', 'CategoryController@update')->name('update-category');
+Route::get('/categorias/{category}', 'CategoryController@detail')->name('detail-category');
+
+
 //CLIENTE
 
 Route::get('/clientes/', 'ClientController@show')->name('show-clients');
