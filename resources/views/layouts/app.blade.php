@@ -109,7 +109,7 @@
             <li class="dropdown notifications-menu">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 <i class="fa fa-bell-o"></i>
-                <span class="label label-warning">1</span>
+                <span class="label label-danger">1</span>
               </a>
               <ul class="dropdown-menu">
                 <li class="header">Tenés 1 notificación</li>
@@ -268,7 +268,7 @@
 
             <li class=" treeview">
               <a href="#">
-                <i class="fa fa-gift"></i> <span> Productos</span>
+                <i class="fas fa-boxes"></i> <span> Productos</span>
                 <span class="pull-right-container">
                   <i class="fa fa-angle-left pull-right"></i>
                 </span>
