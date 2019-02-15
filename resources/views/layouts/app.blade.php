@@ -12,6 +12,7 @@
   <!-- Bootstrap 3.3.7 -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <!-- Ionicons -->
   <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
@@ -217,7 +218,7 @@
   <aside class="main-sidebar">
     <!-- sidebar: style can be found in sidebar.less -->
     @guest
-      iniciar sesion
+      Iniciar Sesión
     @else
       <section class="sidebar">
         <!-- Sidebar user panel -->
@@ -248,13 +249,13 @@
             {{--  --}}
             <li>
               <a href="{{ route('dashboard') }}">
-                <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+                <i class="fa fa-chart-line"></i> <span> Dashboard</span>
               </a>
             </li>
-            {{--  --}}
+
             <li class=" treeview">
               <a href="#">
-                <i class="fa fa-users"></i> <span>Clientes</span>
+                <i class="fa fa-users"></i> <span> Clientes</span>
                 <span class="pull-right-container">
                   <i class="fa fa-angle-left pull-right"></i>
                 </span>
@@ -265,11 +266,9 @@
               </ul>
             </li>
 
-
-            {{--  --}}
             <li class=" treeview">
               <a href="#">
-                <i class="fa fa-gift"></i> <span>Productos</span>
+                <i class="fa fa-gift"></i> <span> Productos</span>
                 <span class="pull-right-container">
                   <i class="fa fa-angle-left pull-right"></i>
                 </span>
@@ -282,7 +281,7 @@
 
             <li class=" treeview">
               <a href="#">
-                <i class="fa fa-gift"></i> <span>Categorías</span>
+                <i class="fas fa-tshirt"></i> <span> Categorías</span>
                 <span class="pull-right-container">
                   <i class="fa fa-angle-left pull-right"></i>
                 </span>
@@ -293,11 +292,22 @@
               </ul>
             </li>
 
-
-            {{--  --}}
             <li class=" treeview">
               <a href="#">
-                <i class="fa fa-shopping-cart"></i> <span>Ventas</span>
+                <i class="fa fa-tags"></i> <span> Marcas</span>
+                <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right"></i>
+                </span>
+              </a>
+              <ul class="treeview-menu">
+              <li><a href="{{ route('show-brand') }}"><i class="fa fa-search"></i> Consultar</a></li>
+              <li><a href="{{ route('new-brand') }}"><i class="fa fa-th"></i> Agregar nueva</a></li>
+              </ul>
+            </li>
+
+            <li class=" treeview">
+              <a href="#">
+                <i class="fa fa-shopping-cart"></i> <span> Ventas</span>
                 <span class="pull-right-container">
                   <i class="fa fa-angle-left pull-right"></i>
                 </span>

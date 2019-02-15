@@ -18,6 +18,16 @@ Route::get('/', function () {
 
 //CATEGORIAS
 
+Route::get('/marcas/', 'BrandController@show')->name('show-brand');
+Route::get('/marcas/nueva/', 'BrandController@new')->name('new-brand');
+Route::post('/marcas/nueva/', 'BrandController@save')->name('save-brand');
+Route::get('/marcas/{brand}/editar/', 'BrandController@edit')->name('edit-brand');
+Route::put('/marcas/{brand}/editar/', 'BrandController@update')->name('update-brand');
+Route::get('/marcas/{brand}', 'BrandController@detail')->name('detail-brand');
+
+
+//CATEGORIAS
+
 Route::get('/categorias/', 'CategoryController@show')->name('show-categories');
 Route::get('/categorias/nueva/', 'CategoryController@new')->name('new-category');
 Route::post('/categorias/nueva/', 'CategoryController@save')->name('save-category');
