@@ -281,7 +281,7 @@
 
             <li class=" treeview">
               <a href="#">
-                <i class="fas fa-tshirt"></i> <span> Categorías</span>
+                <i class="fas fa-sitemap"></i> <span> Categorías</span>
                 <span class="pull-right-container">
                   <i class="fa fa-angle-left pull-right"></i>
                 </span>
