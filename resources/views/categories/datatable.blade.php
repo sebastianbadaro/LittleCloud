@@ -4,8 +4,8 @@
 
     <th>ID</th>
     <th>Nombre</th>
-    <th># Products Count</th>
-    <th># sumOfStock</th>
+    <th># Productos Diferentes</th>
+    <th># Productos en Stock</th>
     <th>Editar</th>
     <th>Ver productos</th>
 
