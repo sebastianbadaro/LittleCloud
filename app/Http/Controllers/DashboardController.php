@@ -57,7 +57,7 @@ class DashboardController extends Controller
             ->whereMonth("created_at", $today->month)
             ->whereYear('created_at', $today->year)
             ->groupBy("dayofmonth(created_at)")
-            ->orderby('created_at','ASC')
+            ->orderby('dayofmonth(created_at)','ASC')
             // ->havingRaw('count > 0')
             ->get();
 
