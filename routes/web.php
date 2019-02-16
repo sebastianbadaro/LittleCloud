@@ -54,7 +54,7 @@ Route::get('/ventas/{sale}','SaleController@detail')->name('detail-sale');
 
 
 //PRODUCTOS
-
+Route::get('/productos/remarcar', 'ProductController@editPrice')->name('raise-price');
 Route::get('/productos/', 'ProductController@show')->name('show-products');
 Route::get('/productos/agregar-stock', 'ProductController@addstock')->name('add-stock');
 Route::get('/productos/exito', 'ProductController@success')->name('product-success');
@@ -66,7 +66,7 @@ Route::get('/productos/{product}','ProductController@detail')->name('detail-prod
 Route::get('/productos/{product}/editar', 'ProductController@edit')->name('edit-product');
 Route::put('/productos/{product}/editar', 'ProductController@update')->name('update-product');
 
-Route::get('/productos/remarcar', 'ProductController@editPrice')->name('raise-price');
+
 // Route::put('/productos/remarcar', 'ProductController@updatePrice')->name('update-price');
 
 
