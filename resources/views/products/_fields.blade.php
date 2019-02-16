@@ -11,7 +11,7 @@
        </div>
        <input
        @if($product->id)
-         disabled
+         readonly
        @endif
        class="form-control" type="text" name="code" id="code" value="{{ old('code',$product->code)}}" placeholder="gu55d8gh"/>
      </div>

@@ -39,7 +39,7 @@ class ClientController extends Controller
           'firstname' => 'required|max:60',
           'lastname' => 'required|max:60',
           'phone' => 'nullable|max:60',
-          'address'=> 'required|max:60',
+          'address'=> 'max:60',
           'email'=> 'nullable|max:60',
           'dni'=> 'required|max:60 ',
           'birthdate'=> 'nullable|date',

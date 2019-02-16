@@ -288,7 +288,7 @@
               </a>
               <ul class="treeview-menu">
               <li><a href="{{ route('show-categories') }}"><i class="fa fa-search"></i> Consultar</a></li>
-              <li><a href="{{ route('new-category') }}"><i class="fa fa-th"></i> Agregar nueva</a></li>
+              <li><a href="{{ route('new-category') }}"><i class="fa fa-plus-circle"></i> Nueva</a></li>
               </ul>
             </li>
 
@@ -301,7 +301,7 @@
               </a>
               <ul class="treeview-menu">
               <li><a href="{{ route('show-brand') }}"><i class="fa fa-search"></i> Consultar</a></li>
-              <li><a href="{{ route('new-brand') }}"><i class="fa fa-th"></i> Agregar nueva</a></li>
+              <li><a href="{{ route('new-brand') }}"><i class="fa fa-plus-circle"></i> Nueva</a></li>
               </ul>
             </li>
 
