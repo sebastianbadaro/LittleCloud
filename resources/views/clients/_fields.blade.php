@@ -81,7 +81,7 @@
     <div class="input-group-addon">
       <i class="fa fa-birthday-cake"></i>
     </div>
-    <input type="date" class="form-control" name="birthdate" id="birthdate" data-mask="" value="{{ old('dni',$client->birthdate)}}" data-inputmask="'alias': 'dd/mm/yyyy'" >
+    <input type="date" class="form-control" name="birthdate" id="birthdate" data-mask="" value="{{ old('birthdate',$client->birthdate)}}" data-inputmask="'alias': 'dd/mm/yyyy'" >
   </div>
   </div>
 

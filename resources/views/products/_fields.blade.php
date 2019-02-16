@@ -45,7 +45,7 @@
              <div class="input-group-addon">
                <i class="fa fa-align-justify"></i>
              </div>
-             <input class="form-control" type="text" name="description" id="description" value="{{ old('size',$product->description)}}" placeholder="Remera roja con ositos"/>
+             <input class="form-control" type="text" name="description" id="description" value="{{ old('description',$product->description)}}" placeholder="Remera roja con ositos"/>
            </div>
          </div>
         </div>
@@ -73,7 +73,7 @@
 
                   <option
 
-                    @if($product->gender_id!=null&&($category->id == old('category_id', $product->category_id)))
+                    @if($product->category_id!=null&&($category->id == old('category_id', $product->category_id)))
                       selected
                     @endif
 
@@ -145,7 +145,7 @@
 
                   <option
 
-                    @if($product->productgender_id!=null&&($productgender->id == old('productGender_id', $product->productgender_id)))
+                    @if($product->productGender_id!=null&&($productgender->id == old('productGender_id', $product->productGender_id)))
                       selected
                     @endif
 
