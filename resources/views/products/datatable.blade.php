@@ -11,6 +11,7 @@
   <th>Temporada</th>
   <th>Stock disponible</th>
   <th>Vendidos</th>
+  <th>Editar</th>
   <th>Detalle</th>
 @endsection
 
@@ -27,6 +28,7 @@
         <td>  {{ $product->season->name }} </td>
         <td>  {{ $product->stock }} </td>
         <td>  {{ $product->timesSold() }} </td>
+        <td class="text-center fancybox" href="{{ route('edit-product', compact('product')) }}"> <a><b class="fa fa-edit "></b></a> </td>
         <td class="text-center fancybox" href="{{ route('detail-product', compact('product')) }}"> <a><b class="fa fa-eye "></b></a> </td>
 
       </tr>
