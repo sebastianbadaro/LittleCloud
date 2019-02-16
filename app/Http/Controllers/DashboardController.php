@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\DB;
 
+use Carbon\Carbon;
+
 use Illuminate\Http\Request;
 use App\Product;
 use App\Client;
@@ -47,10 +49,22 @@ class DashboardController extends Controller
             ->havingRaw('count > 0')
             ->get();
 
+    $today = Carbon::now();
+
+    $lastMonthSales = DB::table('sales')
+            // ->join('payment_types', 'payment_types.id', '=', 'sales.paymentType_id')
+            ->select(DB::raw("dayofmonth(created_at), coalesce(count(*),0) as count"))
+            ->whereMonth("created_at", $today->month)
+            ->whereYear('created_at', $today->year)
+            ->groupBy("dayofmonth(created_at)")
+            ->orderby('created_at','ASC')
+            // ->havingRaw('count > 0')
+            ->get();
+
     // dd($categorias);
     $totalValueOfStock= Product::valueOfStock();
     $amountofItemsInStock = Product::amountofItemsInStock();
     $totalAmountOfClients = Client::totalAmountOfClients();
-    return view('dashboards.dashboard',compact('totalValueOfStock','amountofItemsInStock','totalAmountOfClients','categorias','brands','genders','paymentTypes'));
+    return view('dashboards.dashboard',compact('totalValueOfStock','amountofItemsInStock','totalAmountOfClients','categorias','brands','genders','paymentTypes','lastMonthSales'));
   }
 }

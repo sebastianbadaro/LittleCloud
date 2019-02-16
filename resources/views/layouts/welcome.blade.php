@@ -4,7 +4,9 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>
+          @yield('title')
+        </title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" type="text/css">
@@ -18,7 +20,7 @@
                 font-weight: 200;
                 height: 100vh;
                 margin: 0;
-                
+
             }
 
             .full-height {
@@ -69,7 +71,7 @@
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
-                        <a href="{{ url('/home') }}">Home</a>
+                        <a href="{{ url('/dashboard') }}">Inicio</a>
                     @else
                         <a href="{{ route('login') }}">Login</a>
 
@@ -79,10 +81,7 @@
             @endif
 
             <div class="content">
-                <div class="title m-b-md">
-                    Nubecita
-                </div>
-
+                @yield('content')
                 {{-- <div class="links">
                     <a href="https://laravel.com/docs">Documentation</a>
                     <a href="https://laracasts.com">Laracasts</a>
