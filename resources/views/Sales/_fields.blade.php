@@ -119,6 +119,8 @@
 var total=0;
 var index=0;
 
+
+
 var agregarlog = function (data) {
   // var res = jQuery.parseJSON(data)
   var res = JSON.parse(data)
@@ -221,6 +223,13 @@ window.onload = function () {
       console.log("hola estoy cargando");
       console.log($('#newSaleForm'));
       $('#newSaleForm').bind('submit',selectGenerate);
+      $("#newSaleForm").bind("keypress", function (e) {
+        console.log(e.keyCode);
+          if (e.keyCode == 13 || e.keyCode == 9) {
+              llamada();
+              e.preventDefault();
+          }
+      });
 }
 
 </script>
