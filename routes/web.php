@@ -66,6 +66,9 @@ Route::get('/productos/{product}','ProductController@detail')->name('detail-prod
 Route::get('/productos/{product}/editar', 'ProductController@edit')->name('edit-product');
 Route::put('/productos/{product}/editar', 'ProductController@update')->name('update-product');
 
+Route::get('/productos/remarcar', 'ProductController@editPrice')->name('raise-price');
+// Route::put('/productos/remarcar', 'ProductController@updatePrice')->name('update-price');
+
 
 //DASHBOARD
 

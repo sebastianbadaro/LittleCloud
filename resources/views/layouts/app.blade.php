@@ -276,6 +276,7 @@
               <ul class="treeview-menu">
               <li><a href="{{ route('show-products') }}"><i class="fa fa-search"></i> Consultar</a></li>
               <li><a href="{{ route('add-stock') }}"><i class="fa fa-th"></i> Agregar Stock</a></li>
+              <li><a href="{{ route('raise-price') }}"><i class="fa fa-arrow-up"></i> Remarcar precio en %</a></li>
               </ul>
             </li>
 

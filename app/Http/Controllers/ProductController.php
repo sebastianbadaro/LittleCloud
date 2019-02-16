@@ -127,7 +127,7 @@ class ProductController extends Controller
     $this->validate(
       $request,
       [
-          'code' => 'required|max:60|unique:products,code,'. $product->id,  
+          'code' => 'required|max:60|unique:products,code,'. $product->id,
           'price' => 'required|numeric',
           'size' => 'required|max:60',
           'description'=> 'required|max:60',
@@ -165,5 +165,55 @@ class ProductController extends Controller
         return response($request, 200)
                   ->header('Content-Type', 'text/plain');//Response::json($response);  // <<<<<<<<< see this line
 # code...
+  }
+
+  public function editPrice()
+  {
+    $brands= Brand::orderby('name')->get();
+    return view('products.editPrice',compact('brands'));
+  }
+
+  public function updatePrice(Request $request)
+  {
+    $this->validate(
+      $request,
+      [
+          // 'code' => 'required|max:60|unique:products,code,'. $product->id,
+          // 'price' => 'required|numeric',
+          // 'size' => 'required|max:60',
+          // 'description'=> 'required|max:60',
+          // 'ageTarget'=> 'required|numeric',
+          //
+          // 'category_id'=> 'required|exists:categories,id',
+          // 'brand_id'=>'required|exists:brands,id',
+          // 'season_id'=>'required|exists:seasons,id',
+          // 'productGender_id'=>'required|exists:productgenders,id',
+          // 'stock'=>'required| numeric|min:0',
+
+      ],
+      [
+
+      ],
+      [
+        // 'code' => 'codigo',
+        // 'price' => 'precio',
+        // 'size' => 'talle',
+        // 'description'=> 'descripcion',
+        // 'ageTarget'=> 'edadEstimada',
+        // 'stock'=> 'stock',
+        // 'category_id'=> 'categoria',
+        // 'brand_id'=>'marca',
+        // 'season_id'=>'temporada',
+        // 'productGender_id'=>'genero',
+        // 'stock'=>'stock',
+      ]
+  );
+
+    $product->fill($request->all());
+    $product->save();
+
+
+        return response($request, 200)
+                  ->header('Content-Type', 'text/plain');
   }
 }
