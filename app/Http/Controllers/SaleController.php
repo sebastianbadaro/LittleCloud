@@ -18,7 +18,7 @@ class SaleController extends Controller
   public function show()
   {
     //dd(Sale::find(1)->products()->get());
-    $sales = Sale::orderby('created_at','DESC')->with('client')->with('paymenttype')->get();
+    $sales = Sale::orderby('id','DESC')->with('client')->with('paymenttype')->get();
 
     return view('Sales.sales',compact('sales'));
   }

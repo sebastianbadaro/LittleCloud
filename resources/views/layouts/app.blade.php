@@ -430,7 +430,8 @@ $(document).ready( function () {
   $('#myTable').DataTable( {
         "scrollX": true,
         "select": true,
-        "responsive": true
+        "responsive": true,
+         "order": [] //para evitar el ordenamiento inicial y respetar el que vinee por default, mejora performance
     } );
 
 
