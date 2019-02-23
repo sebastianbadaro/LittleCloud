@@ -12,4 +12,14 @@ class NotificationController extends Controller
       $notifications = Notification::where('seen',false)->get();
       return $notifications->toJson();
     }
+
+    public function readNotification(Notification $notification)
+    {
+
+      $notification->seen=1;
+      $notification->save();
+
+      return response($notification, 200)
+                ->header('Content-Type', 'text/plain');
+    }
 }

@@ -52,7 +52,7 @@ class SaleController extends Controller
     }
       $sales = Sale::orderby('created_at','DESC')->with('client')->with('paymenttype')->get();
       event(new newSale($newSale));
-      return view('Sales.sales',compact('sales'));
+        return redirect('/ventas/');
   }
   public function detail(Sale $sale)
   {
