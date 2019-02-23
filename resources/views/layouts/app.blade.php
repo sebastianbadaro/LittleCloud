@@ -9,6 +9,8 @@
   <title>{{ config('app.name', 'Rapicuotapp') }}</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <link href="{{ asset('css/loader.css') }}"  rel="stylesheet">
+
   <!-- Bootstrap 3.3.7 -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <!-- Font Awesome -->
@@ -35,6 +37,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.6/dist/jquery.fancybox.min.css" />
 
   <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -427,13 +430,15 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
 <script type="text/javascript">
 $(document).ready( function () {
+
   $('#myTable').DataTable( {
         "scrollX": true,
         "select": true,
         "responsive": true,
-         "order": [] //para evitar el ordenamiento inicial y respetar el que vinee por default, mejora performance
+         "order": []
     } );
 
+ $('')
 
 } );
 $('.js-example-basic-single').select2({
