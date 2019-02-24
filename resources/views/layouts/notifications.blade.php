@@ -16,7 +16,7 @@
         </li> --}}
       </ul>
     </li>
-    <li class="footer"><a href="#">Ver todas</a></li>
+    <li class="footer"><a href="/notificaciones">Ver todas</a></li>
   </ul>
 </li>
 

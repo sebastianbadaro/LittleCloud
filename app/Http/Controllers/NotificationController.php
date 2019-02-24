@@ -22,4 +22,12 @@ class NotificationController extends Controller
       return response($notification, 200)
                 ->header('Content-Type', 'text/plain');
     }
+
+    public function show()
+    {
+      // $notifications  = Notification::orderby('id','DESC');
+      $notifications  = Notification::orderby('id','DESC')->get();
+      // dd($notifications);
+      return view('notifications.notifications',compact('notifications'));
+    }
 }
