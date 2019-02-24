@@ -16,6 +16,10 @@ Route::get('/', function () {
 });
 
 
+//NOTIFICACIONES
+Route::get('/notificaciones/api/','NotificationController@showNotificationApi')->name('api-notifications');
+Route::get('/notificaciones/','NotificationController@show')->name('show-notifications');
+Route::put('/notificaciones/leer/{notification}', 'NotificationController@readNotification')->name('read-notification');
 //CATEGORIAS
 
 Route::get('/marcas/', 'BrandController@show')->name('show-brand');

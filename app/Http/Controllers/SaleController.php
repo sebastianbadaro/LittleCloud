@@ -7,6 +7,7 @@ use App\Sale;
 use App\Client;
 use App\PaymentType;
 use App\Product;
+use App\Events\newSale;
 
 
 class SaleController extends Controller
@@ -17,7 +18,7 @@ class SaleController extends Controller
   }
   public function show()
   {
-    //dd(Sale::find(1)->products()->get());
+
     $sales = Sale::orderby('id','DESC')->with('client')->with('paymenttype')->get();
 
     return view('Sales.sales',compact('sales'));
@@ -50,7 +51,8 @@ class SaleController extends Controller
      $product->save();
     }
       $sales = Sale::orderby('created_at','DESC')->with('client')->with('paymenttype')->get();
-      return view('Sales.sales',compact('sales'));
+      event(new newSale($newSale));
+        return redirect('/ventas/');
   }
   public function detail(Sale $sale)
   {

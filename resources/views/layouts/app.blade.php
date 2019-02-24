@@ -9,6 +9,7 @@
   <title>{{ config('app.name', 'Rapicuotapp') }}</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
   <link href="{{ asset('css/loader.css') }}"  rel="stylesheet">
 
   <!-- Bootstrap 3.3.7 -->
@@ -108,27 +109,13 @@
                 <li class="footer"><a href="#">Ver todos los mensajes</a></li>
               </ul>
             </li> --}}
+
+
             <!-- Notifications: style can be found in dropdown.less -->
-            <li class="dropdown notifications-menu">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                <i class="fa fa-bell-o"></i>
-                <span class="label label-danger">1</span>
-              </a>
-              <ul class="dropdown-menu">
-                <li class="header">Tenés 1 notificación</li>
-                <li>
-                  <!-- inner menu: contains the actual data -->
-                  <ul class="menu">
-                    <li>
-                      <a href="#">
-                        <i class="fa fa-exclamation text-aqua"></i> Te estás quedando sin stock de remeras
-                      </a>
-                    </li>
-                  </ul>
-                </li>
-                <li class="footer"><a href="#">Ver todas</a></li>
-              </ul>
-            </li>
+            @include('layouts.notifications')
+
+
+
             <!-- Tasks: style can be found in dropdown.less -->
             {{-- <li class="dropdown tasks-menu">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -384,7 +371,7 @@
 <!-- ./wrapper -->
 
 <!-- jQuery 3 -->
-<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
 <!-- jQuery UI 1.11.4 -->
 <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
@@ -400,7 +387,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-sparklines/2.1.2/jquery.sparkline.min.js"></script>
 <!-- jvectormap -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jvectormap/1.2.2/jquery-jvectormap.min.js"></script>
-<script src="plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
+
 <!-- jQuery Knob Chart -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery-Knob/1.2.13/jquery.knob.min.js"></script>
 <!-- daterangepicker -->
@@ -409,7 +396,7 @@
 <!-- datepicker -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
 <!-- Bootstrap WYSIHTML5 -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap3-wysiwyg/0.3.3/amd/bootstrap3-wysihtml5.all.min.js"></script>
+{{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap3-wysiwyg/0.3.3/amd/bootstrap3-wysihtml5.all.min.js"></script> --}}
 <!-- Slimscroll -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery-slimScroll/1.3.8/jquery.slimscroll.min.js"></script>
 <!-- FastClick -->
@@ -435,10 +422,13 @@ $(document).ready( function () {
         "scrollX": true,
         "select": true,
         "responsive": true,
-         "order": []
+         "order": [],
+         "language": {
+            "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json"
+        }
     } );
 
- $('')
+
 
 } );
 $('.js-example-basic-single').select2({
