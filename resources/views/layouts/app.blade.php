@@ -422,7 +422,10 @@ $(document).ready( function () {
         "scrollX": true,
         "select": true,
         "responsive": true,
-         "order": []
+         "order": [],
+         "language": {
+            "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json"
+        }
     } );
 
 
