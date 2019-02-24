@@ -55,6 +55,7 @@ Route::get('/ventas/{sale}','SaleController@detail')->name('detail-sale');
 
 //PRODUCTOS
 Route::get('/productos/remarcar', 'ProductController@editPrice')->name('raise-price');
+Route::post('/productos/remarcar', 'ProductController@updatePrice')->name('update-price');
 Route::get('/productos/', 'ProductController@show')->name('show-products');
 Route::get('/productos/agregar-stock', 'ProductController@addstock')->name('add-stock');
 Route::get('/productos/exito', 'ProductController@success')->name('product-success');

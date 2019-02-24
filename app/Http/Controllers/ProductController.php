@@ -175,45 +175,37 @@ class ProductController extends Controller
 
   public function updatePrice(Request $request)
   {
+    if ($request->brand_id == 0) {
+      $products = Product::all();
+      foreach ($products as $product) {
+        $product->price = ($product->price)*(($request->percentage/100)+1);
+        $product->save();
+      }
+    }else {
+
     $this->validate(
       $request,
-      [
-          // 'code' => 'required|max:60|unique:products,code,'. $product->id,
-          // 'price' => 'required|numeric',
-          // 'size' => 'required|max:60',
-          // 'description'=> 'required|max:60',
-          // 'ageTarget'=> 'required|numeric',
-          //
-          // 'category_id'=> 'required|exists:categories,id',
-          // 'brand_id'=>'required|exists:brands,id',
-          // 'season_id'=>'required|exists:seasons,id',
-          // 'productGender_id'=>'required|exists:productgenders,id',
-          // 'stock'=>'required| numeric|min:0',
+        [
+             'brand_id' => 'required|max:60|exists:brands,id',
+             'percentage' => 'required|numeric',
 
-      ],
-      [
+        ],
+        [
 
-      ],
-      [
-        // 'code' => 'codigo',
-        // 'price' => 'precio',
-        // 'size' => 'talle',
-        // 'description'=> 'descripcion',
-        // 'ageTarget'=> 'edadEstimada',
-        // 'stock'=> 'stock',
-        // 'category_id'=> 'categoria',
-        // 'brand_id'=>'marca',
-        // 'season_id'=>'temporada',
-        // 'productGender_id'=>'genero',
-        // 'stock'=>'stock',
-      ]
-  );
+        ],
+        [
+           'brand_id' => 'marca',
+           'percentage' => 'porcentaje',
 
-    $product->fill($request->all());
-    $product->save();
+        ]
+      );
+    $products = Product::where('brand_id',$request->brand_id)->get();
+    foreach ($products as $product) {
+      $product->price = ($product->price)*(($request->percentage/100)+1);
+      $product->save();
+    }
 
-
-        return response($request, 200)
-                  ->header('Content-Type', 'text/plain');
+    }
+    return redirect()->route('show-products');
   }
 }
