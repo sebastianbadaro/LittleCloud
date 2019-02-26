@@ -52,19 +52,37 @@
   console.log('this is the form data'+formdata);
   $.ajax({
 
-      url: 'https://reqres.in/api/users',
-
-      success: function(respuesta) {
-
-          console.log(respuesta);
-
-      },
-
-      error: function() {
-
-          console.log("No se ha podido obtener la información");
-
-      }
+    headers: {
+       'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+     },
+     type: 'POST',
+     url: '/productos/nuevo',
+     data: formdata,
+     dataType: 'JSON',
+     success: function(msg) {
+       console.log('succ');
+       console.log(msg);
+       $('#exito').removeClass("hidden");
+       $('#myform').addClass("hidden");
+         $('#erroralert').addClass("hidden");
+       },
+     error: function (msg) {
+       $('#errorlist').empty() ;
+       $('#erroralert').removeClass("hidden");
+       console.log(msg.responseJSON.errors);
+       var errors = Object.keys(msg.responseJSON.errors).map(function(key) {
+         return [  msg.responseJSON.errors[key]][0][0];
+         });
+         console.log(errors);
+       errors.forEach(function(element) {
+           console.log(element);
+           var erroritem = document.createElement("li");
+           // erroritem.addClass("error");
+           erroritem.innerHTML = element;
+           $('#errorlist').append(erroritem);
+         });
+         console.log(msg.responseJSON.errors);
+     }
 
   });
 });
