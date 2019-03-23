@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
            SeasonsTableSeeder::class,
            ProductGendersTableSeeder::class,
            BrandsTableSeeder::class,
+           subcategorySeeder::class,
            CategoriesTableSeeder::class,
            ClientsTableSeeder::class,
            ProductsTableSeeder::class,

@@ -21,10 +21,11 @@ class DashboardController extends Controller
 
     //TODO: move this logic to each model
 
-    $categorias = DB::table('categories')
+    $subcategorias = DB::table('categories')
             ->join('products', 'categories.id', '=', 'products.category_id')
-            ->select(DB::raw('categories.name, sum(products.stock) as count'))
-            ->groupBy('categories.name')
+            ->join('subcategories',  'categories.subcategory_id', '=', 'subcategories.id')
+            ->select(DB::raw('subcategories.name, sum(products.stock) as count'))
+            ->groupBy('subcategories.name')
             ->orderby('count','DESC')
             ->havingRaw('count > 0')
             ->get();
@@ -65,6 +66,6 @@ class DashboardController extends Controller
     $totalValueOfStock= Product::valueOfStock();
     $amountofItemsInStock = Product::amountofItemsInStock();
     $totalAmountOfClients = Client::totalAmountOfClients();
-    return view('dashboards.dashboard',compact('totalValueOfStock','amountofItemsInStock','totalAmountOfClients','categorias','brands','genders','paymentTypes','lastMonthSales'));
+    return view('dashboards.dashboard',compact('totalValueOfStock','amountofItemsInStock','totalAmountOfClients','subcategorias','brands','genders','paymentTypes','lastMonthSales'));
   }
 }
