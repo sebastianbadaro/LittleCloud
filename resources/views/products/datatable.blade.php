@@ -4,6 +4,7 @@
   <th>Codigo</th>
   <th>Descripcion</th>
   <th>Categoria</th>
+  <th>Subcategoria</th>
   <th>Precio</th>
   <th>Talle</th>
   <th>Marca</th>
@@ -21,6 +22,7 @@
         <td> <a >{{ $product->code }}  </a>  </td>
         <td>  {{ str_limit($product->description, $limit = 30, $end = '...') }} </td>
         <td>  {{ $product->category->name }} </td>
+        <td>  {{ $product->category->subcategory->name }} </td>
         <td>  ${{ $product->price }} </td>
         <td>  {{ $product->size }} </td>
         <td>  {{ $product->brand->name }} </td>
