@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Category;
+use App\Subcategory;
 use App\Product;
 
 class CategoryController extends Controller
@@ -22,12 +23,14 @@ class CategoryController extends Controller
   public function new()
   {
     $category = new Category();
-    return view('categories.newCategory',compact('category'));
+    $subcategories = Subcategory::orderby('name')->get();
+    return view('categories.newCategory',compact('category','subcategories'));
   }
 
   public function edit(Category $category)
   {
-    return view('categories.editCategory',compact('category'));
+    $subcategories = Subcategory::orderby('name')->get();
+    return view('categories.editCategory',compact('category','subcategories'));
   }
 
   public function save(Request $request)
@@ -36,16 +39,18 @@ class CategoryController extends Controller
       $request,
       [
           'name' => 'required|max:100',
+          'subcategory_id' => 'required|exists:subcategories,id',
       ],
       [
 
       ],
       [
           'name' => 'nombre',
+          'subcategory_id' => 'subcategoria',
       ]
   );
   $category = new Category;
-  $category->name= $request->name;
+  $category->fill($request->all());
   $category->save();
 
   return redirect('/categorias/');
@@ -53,22 +58,23 @@ class CategoryController extends Controller
 
   public function update(Category $category, Request $request)
   {
+    // dd($request);
     $this->validate(
       $request,
       [
           'name' => 'required|max:100',
-
+          'subcategory_id' => 'required|exists:subcategories,id',
       ],
       [
 
       ],
       [
           'name' => 'nombre',
-
+          'subcategory_id' => 'subcategoria',
       ]
   );
 
-  $category->name= $request->name;
+  $category->fill($request->all());
   $category->save();
 
   return redirect('/categorias/');

@@ -8,6 +8,9 @@ use App\Subcategory;
 
 class Category extends Model
 {
+
+  protected $fillable = ['name','subcategory_id'];
+
   public function products()
  {
      return $this->hasMany(Product::class, 'category_id');
