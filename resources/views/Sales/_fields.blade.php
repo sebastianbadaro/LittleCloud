@@ -11,19 +11,15 @@
     </select> --}}
 
 
-    <select class="js-example-basic-single form-control" name="client_id" id="client_id">
+
+    <select class="client-selector form-control" name="client_id" id="client_id">
 
       @foreach ($clients as $client )
-
-
         <option
-
-          {{-- @if($client->id!=null&&($gender->id == old('client_id', $client->id)))
-            selected
-          @endif --}}
-
-
-         value="{{ $client->id }} ">
+          @if ($client->DNI=='00000000')
+            selected="selected"
+          @endif
+          value="{{ $client->id }} ">
           {{ $client->lastname  }},   {{ $client->firstname  }} - [{{ $client->DNI  }}]
         </option>
       @endforeach
@@ -230,6 +226,11 @@ window.onload = function () {
               e.preventDefault();
           }
       });
+
+
+      $('.client-selector').select2({
+        placeholder: 'Select an option'
+        });
 }
 
 </script>
