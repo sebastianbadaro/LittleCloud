@@ -62,10 +62,18 @@ class DashboardController extends Controller
             // ->havingRaw('count > 0')
             ->get();
 
+    $currentmonthSalesAmountByDay =DB::table('product_sale')
+            ->select(DB::raw("dayofmonth(created_at), coalesce(sum(price*amount),0) as sum"))
+            ->whereMonth("created_at", $today->month)
+            ->whereYear('created_at', $today->year)
+            ->groupBy("dayofmonth(created_at)")
+            ->orderby('dayofmonth(created_at)','ASC')
+            // ->havingRaw('count > 0')
+            ->get();
     // dd($categorias);
     $totalValueOfStock= Product::valueOfStock();
     $amountofItemsInStock = Product::amountofItemsInStock();
     $totalAmountOfClients = Client::totalAmountOfClients();
-    return view('dashboards.dashboard',compact('totalValueOfStock','amountofItemsInStock','totalAmountOfClients','subcategorias','brands','genders','paymentTypes','lastMonthSales'));
+    return view('dashboards.dashboard',compact('totalValueOfStock','amountofItemsInStock','totalAmountOfClients','subcategorias','brands','genders','paymentTypes','lastMonthSales','currentmonthSalesAmountByDay'));
   }
 }

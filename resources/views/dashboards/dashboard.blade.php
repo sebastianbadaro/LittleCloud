@@ -169,6 +169,8 @@
       </div>
     </div>
 
+    @include('dashboards.CurrentMonthSalesAmountByDay')
+
 
   </div>
   <!-- /.box -->
