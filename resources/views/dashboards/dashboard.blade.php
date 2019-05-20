@@ -149,7 +149,7 @@
         <!-- /.box-body -->
       </div>
     </div>
-
+    @include('dashboards.MonthlyKPI')
     <div class="col-md-12 col-xs-12">
       <!-- DONUT CHART -->
       <div class="box box-danger">
@@ -168,6 +168,7 @@
         <!-- /.box-body -->
       </div>
     </div>
+
 
     @include('dashboards.CurrentMonthSalesAmountByDay')
 
