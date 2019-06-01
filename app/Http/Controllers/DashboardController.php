@@ -30,7 +30,7 @@ public function historicSales()
           ->get();
 
           $SalesByHour =DB::table('product_sale')
-                  ->select(DB::raw("DATE_FORMAT(created_at, '%h') as hour, coalesce(sum(price*amount),0) as sum,coalesce(count(*),0) as count"))
+                  ->select(DB::raw("DATE_FORMAT(created_at, '%H') as hour, coalesce(sum(price*amount),0) as sum,coalesce(count(*),0) as count"))
                   ->groupBy("hour")
                   ->orderby('hour','ASC')
                   ->get();
