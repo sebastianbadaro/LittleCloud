@@ -79,6 +79,7 @@ Route::put('/productos/{product}/editar', 'ProductController@update')->name('upd
 
 Route::get('/dashboard/Stock', 'DashboardController@Stock')->name('dashboard-stock');
 Route::get('/dashboard/Ventas del mes', 'DashboardController@MonthlySales')->name('dashboard');
+Route::get('/dashboard/historico', 'DashboardController@historicSales')->name('dashboard-historic');
 
 Auth::routes();
 

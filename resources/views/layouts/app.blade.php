@@ -238,7 +238,7 @@
             <li class="header">MENÚ PRINCIPAL</li>
 
 
-              {{-- CLIENTES --}}
+              {{-- ESTADISTICAS --}}
             <li class=" treeview">
               <a href="#">
                 <i class="fa fa-chart-line"></i> <span> Estadisticas</span>
@@ -249,7 +249,7 @@
               <ul class="treeview-menu">
                 <li><a href="{{ route('dashboard') }}"><i class="fa fa-search"></i> Ventas del mes</a></li>
                 <li><a href="{{ route('dashboard-stock') }}"><i class="fa fa-plus-circle "></i> Stock</a></li>
-                {{-- <li><a href="{{ route('dashboard-historic') }}"><i class="fa fa-plus-circle "></i> Historico</a></li> --}}
+                <li><a href="{{ route('dashboard-historic') }}"><i class="fa fa-plus-circle "></i> Historico</a></li>
               </ul>
             </li>
 
