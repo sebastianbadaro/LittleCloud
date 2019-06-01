@@ -21,7 +21,7 @@ class SaleDetailsTableSeeder extends Seeder
               'product_id' => rand(1,20),
               'price' => $faker->randomFloat(2,100,900),
               'amount' => rand(1,5),
-              'created_at' => Carbon::now()->subDays(rand(0,360))->format('Y-m-d H:i:s'),
+              'created_at' => Carbon::now()->subDays(rand(0,360))->addHour(rand(-12,12))->format('Y-m-d H:i:s'),
 
           ]);
       }

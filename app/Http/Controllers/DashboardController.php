@@ -20,7 +20,7 @@ class DashboardController extends Controller
 public function historicSales()
 {
   $SalesAmountByMonth =DB::table('product_sale')
-          ->select(DB::raw("DATE_FORMAT(created_at, '%m-%Y') as period, DATE_FORMAT(created_at, '%Y') as year, DATE_FORMAT(created_at, '%m') as month, coalesce(sum(price*amount),0) as sum"))
+          ->select(DB::raw("DATE_FORMAT(created_at, '%m-%Y') as period, DATE_FORMAT(created_at, '%Y') as year, DATE_FORMAT(created_at, '%m') as month, coalesce(sum(price*amount),0) as sum,coalesce(count(*),0) as count"))
           ->groupBy("period")
           ->groupBy("year")
           ->groupBy("month")
@@ -29,7 +29,13 @@ public function historicSales()
           // ->havingRaw('count > 0')
           ->get();
 
-            return view('dashboards.dashboardHistoric',compact('SalesAmountByMonth'));
+          $SalesByHour =DB::table('product_sale')
+                  ->select(DB::raw("DATE_FORMAT(created_at, '%h') as hour, coalesce(sum(price*amount),0) as sum,coalesce(count(*),0) as count"))
+                  ->groupBy("hour")
+                  ->orderby('hour','ASC')
+                  ->get();
+
+            return view('dashboards.dashboardHistoric',compact('SalesAmountByMonth','SalesByHour'));
 
 }
 
