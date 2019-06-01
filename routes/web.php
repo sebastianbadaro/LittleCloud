@@ -77,7 +77,8 @@ Route::put('/productos/{product}/editar', 'ProductController@update')->name('upd
 
 //DASHBOARD
 
-Route::get('/dashboard/', 'DashboardController@show')->name('dashboard');
+Route::get('/dashboard/Stock', 'DashboardController@Stock')->name('dashboard-stock');
+Route::get('/dashboard/Ventas del mes', 'DashboardController@MonthlySales')->name('dashboard');
 
 Auth::routes();
 

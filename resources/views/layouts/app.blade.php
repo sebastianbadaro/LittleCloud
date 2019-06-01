@@ -236,13 +236,24 @@
           <!-- sidebar menu: : style can be found in sidebar.less -->
           <ul class="sidebar-menu" data-widget="tree">
             <li class="header">MENÚ PRINCIPAL</li>
-            {{--  --}}
-            <li>
-              <a href="{{ route('dashboard') }}">
-                <i class="fa fa-chart-line"></i> <span> Dashboard</span>
+
+
+              {{-- CLIENTES --}}
+            <li class=" treeview">
+              <a href="#">
+                <i class="fa fa-chart-line"></i> <span> Estadisticas</span>
+                <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right"></i>
+                </span>
               </a>
+              <ul class="treeview-menu">
+                <li><a href="{{ route('dashboard') }}"><i class="fa fa-search"></i> Ventas del mes</a></li>
+                <li><a href="{{ route('dashboard-stock') }}"><i class="fa fa-plus-circle "></i> Stock</a></li>
+                {{-- <li><a href="{{ route('dashboard-historic') }}"><i class="fa fa-plus-circle "></i> Historico</a></li> --}}
+              </ul>
             </li>
 
+            {{-- CLIENTES --}}
             <li class=" treeview">
               <a href="#">
                 <i class="fa fa-users"></i> <span> Clientes</span>
