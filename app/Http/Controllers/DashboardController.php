@@ -19,23 +19,32 @@ class DashboardController extends Controller
 
 public function historicSales()
 {
-  $SalesAmountByMonth =DB::table('product_sale')
-          ->select(DB::raw("DATE_FORMAT(created_at, '%m-%Y') as period, DATE_FORMAT(created_at, '%Y') as year, DATE_FORMAT(created_at, '%m') as month, coalesce(sum(price*amount),0) as sum,coalesce(count(*),0) as count"))
-          ->groupBy("period")
-          ->groupBy("year")
-          ->groupBy("month")
-          ->orderby('year','ASC')
-          ->orderby('month','ASC')
-          // ->havingRaw('count > 0')
-          ->get();
+$SalesAmountByMonth =DB::table('product_sale')
+        ->select(DB::raw("DATE_FORMAT(created_at, '%m-%Y') as period, DATE_FORMAT(created_at, '%Y') as year, DATE_FORMAT(created_at, '%m') as month, coalesce(sum(price*amount),0) as sum,coalesce(count(*),0) as count"))
+        ->groupBy("period")
+        ->groupBy("year")
+        ->groupBy("month")
+        ->orderby('year','ASC')
+        ->orderby('month','ASC')
+        // ->havingRaw('count > 0')
+        ->get();
 
-          $SalesByHour =DB::table('product_sale')
-                  ->select(DB::raw("DATE_FORMAT(created_at, '%H') as hour, coalesce(sum(price*amount),0) as sum,coalesce(count(*),0) as count"))
-                  ->groupBy("hour")
-                  ->orderby('hour','ASC')
-                  ->get();
+$SalesByHour =DB::table('product_sale')
+        ->select(DB::raw("DATE_FORMAT(created_at, '%H') as hour, coalesce(sum(price*amount),0) as sum,coalesce(count(*),0) as count"))
+        ->groupBy("hour")
+        ->orderby('hour','ASC')
+        ->get();
 
-            return view('dashboards.dashboardHistoric',compact('SalesAmountByMonth','SalesByHour'));
+$SalesByWeekDay =DB::table('product_sale')
+        ->select(DB::raw("DAYOFWEEK(created_at) as daynumber,DAYNAME(created_at) as dayname, coalesce(sum(price*amount),0) as sum,coalesce(count(*),0) as count"))
+        ->groupBy("daynumber")
+        ->groupBy("dayname")
+        ->orderby('daynumber','ASC')
+        ->get();
+
+
+
+return view('dashboards.dashboardHistoric',compact('SalesAmountByMonth','SalesByHour','SalesByWeekDay'));
 
 }
 

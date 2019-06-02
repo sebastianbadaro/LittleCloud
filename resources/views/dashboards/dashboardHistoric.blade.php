@@ -23,6 +23,7 @@
 @include('dashboards.historic-monthlySales')
 @include('dashboards.historic-monthlySalesAmount')
 @include('dashboards.historic-SalesByHour')
+@include('dashboards.historic-SalesByWeekDay')
 
 
 
