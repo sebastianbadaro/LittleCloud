@@ -35,7 +35,7 @@
           </div>
         </div>
         <div class="box-body" style="height: 300px">
-          <canvas id="lastMonthSales" width="50" height="50"></canvas>
+          <canvas id="currentMonthSales" width="50" height="50"></canvas>
         </div>
         <!-- /.box-body -->
       </div>
@@ -57,15 +57,15 @@
 
 
   <script>
-  var ctx = document.getElementById("lastMonthSales").getContext('2d');
+  var ctx = document.getElementById("currentMonthSales").getContext('2d');
   ctx.height = 100;
   var myChart = new Chart(ctx, {
       type: 'line',
       data: {
-          labels: {!!json_encode($lastMonthSales->pluck("dayofmonth(created_at)"))!!},
+          labels: {!!json_encode($currentMonthSales->pluck("dayofmonth(created_at)"))!!},
           datasets: [{
               label: '# de ventas',
-              data: {!!json_encode($lastMonthSales->pluck("count"))!!},
+              data: {!!json_encode($currentMonthSales->pluck("count"))!!},
 
               backgroundColor: [
                 'rgba(54, 162, 235, 1)'

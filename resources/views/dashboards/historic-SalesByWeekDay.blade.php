@@ -3,7 +3,7 @@
     <!-- DONUT CHART -->
     <div class="box box-danger">
       <div class="box-header with-border">
-        <h3 class="box-title"># Ventas por hora</h3>
+        <h3 class="box-title"># Ventas por día de la semana</h3>
 
         <div class="box-tools pull-right">
           <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -12,7 +12,7 @@
         </div>
       </div>
       <div class="box-body" style="height: 300px">
-        <canvas id="SalesByWeekDay" width="50" height="50"></canvas>
+        <canvas id="SalesByWeekDay" width="100" height="100"></canvas>
       </div>
       <!-- /.box-body -->
     </div>

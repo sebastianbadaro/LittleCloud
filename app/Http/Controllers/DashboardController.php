@@ -48,52 +48,70 @@ return view('dashboards.dashboardHistoric',compact('SalesAmountByMonth','SalesBy
 
 }
 
-  public function MonthlySales()
-  {
+public function MonthlySales()
+{
 
-    //TODO: move this logic to each model
-
-
-
-    $today = Carbon::now();
-
-    $lastMonthSales = DB::table('sales')
-            // ->join('payment_types', 'payment_types.id', '=', 'sales.paymentType_id')
-            ->select(DB::raw("dayofmonth(created_at), coalesce(count(*),0) as count"))
-            ->whereMonth("created_at", $today->month)
-            ->whereYear('created_at', $today->year)
-            ->groupBy("dayofmonth(created_at)")
-            ->orderby('dayofmonth(created_at)','ASC')
-            // ->havingRaw('count > 0')
-            ->get();
-
-    $currentmonthSalesAmountByDay =DB::table('product_sale')
-            ->select(DB::raw("dayofmonth(created_at), coalesce(sum(price*amount),0) as sum"))
-            ->whereMonth("created_at", $today->month)
-            ->whereYear('created_at', $today->year)
-            ->groupBy("dayofmonth(created_at)")
-            ->orderby('dayofmonth(created_at)','ASC')
-            // ->havingRaw('count > 0')
-            ->get();
-
-            $thisMonthSoldItems =DB::table('product_sale')
-                    ->select(DB::raw("dayofmonth(created_at), coalesce(sum(amount),0) as sum"))
-                    ->whereMonth("created_at", $today->month)
-                    ->whereYear('created_at', $today->year)
-                    ->groupBy("dayofmonth(created_at)")
-                    ->orderby('dayofmonth(created_at)','ASC')
-                    // ->havingRaw('count > 0')
-                    ->get()->sum('sum');
+  //TODO: move this logic to each model
 
 
-    $thisMonthTotalSales = $currentmonthSalesAmountByDay->sum('sum');
-    $thisMonthAmountOfSales = $lastMonthSales->sum('count');
+
+  $today = Carbon::now();
+
+  $currentMonthSales = DB::table('sales')
+          // ->join('payment_types', 'payment_types.id', '=', 'sales.paymentType_id')
+          ->select(DB::raw("dayofmonth(created_at), coalesce(count(*),0) as count"))
+          ->whereMonth("created_at", $today->month)
+          ->whereYear('created_at', $today->year)
+          ->groupBy("dayofmonth(created_at)")
+          ->orderby('dayofmonth(created_at)','ASC')
+          // ->havingRaw('count > 0')
+          ->get();
+
+
+          for ($i=1; $i <= $today->day; $i++) {
+
+            if(!$currentMonthSales->contains('dayofmonth(created_at)',$i))
+              $currentMonthSales->push((object)['dayofmonth(created_at)' => $i,'count' => 0]);
+          }
+
+          $currentMonthSales = $currentMonthSales->sortBy('dayofmonth(created_at)');
+
+$currentmonthSalesAmountByDay =DB::table('product_sale')
+        ->select(DB::raw("dayofmonth(created_at), coalesce(sum(price*amount),0) as amountSold,coalesce(sum(amount),0) as soldItems"))
+        ->whereMonth("created_at", $today->month)
+        ->whereYear('created_at', $today->year)
+        ->groupBy("dayofmonth(created_at)")
+        ->orderby('dayofmonth(created_at)','ASC')
+        // ->havingRaw('count > 0')
+        ->get();
+
+        for ($i=1; $i <= $today->day; $i++) {
+
+          if(!$currentmonthSalesAmountByDay->contains('dayofmonth(created_at)',$i))
+            $currentmonthSalesAmountByDay->push((object)['dayofmonth(created_at)' => $i,'amountSold' => 0,'soldItems' => 0]);
+        }
+
+        $currentmonthSalesAmountByDay = $currentmonthSalesAmountByDay->sortBy('dayofmonth(created_at)');
+
+// $thisMonthSoldItems =DB::table('product_sale')
+//         ->select(DB::raw("dayofmonth(created_at), coalesce(sum(amount),0) as sum"))
+//         ->whereMonth("created_at", $today->month)
+//         ->whereYear('created_at', $today->year)
+//         ->groupBy("dayofmonth(created_at)")
+//         ->orderby('dayofmonth(created_at)','ASC')
+//         // ->havingRaw('count > 0')
+//         ->get()->sum('sum');
+
+
+    $thisMonthTotalSales = $currentmonthSalesAmountByDay->sum('amountSold');
+    $thisMonthAmountOfSales = $currentMonthSales->sum('count');
+    $thisMonthSoldItems = $currentmonthSalesAmountByDay->sum('soldItems');
     // dd($categorias);
-    $totalValueOfStock= Product::valueOfStock();
-    $amountofItemsInStock = Product::amountofItemsInStock();
-    $totalAmountOfClients = Client::totalAmountOfClients();
-    return view('dashboards.dashboard',compact('lastMonthSales','currentmonthSalesAmountByDay','thisMonthTotalSales','thisMonthAmountOfSales','thisMonthSoldItems'));
-  }
+  //  $totalValueOfStock= Product::valueOfStock();
+  //  $amountofItemsInStock = Product::amountofItemsInStock();
+
+  return view('dashboards.dashboard',compact('currentMonthSales','currentmonthSalesAmountByDay','thisMonthTotalSales','thisMonthAmountOfSales','thisMonthSoldItems'));
+}
 
   public function Stock()
   {

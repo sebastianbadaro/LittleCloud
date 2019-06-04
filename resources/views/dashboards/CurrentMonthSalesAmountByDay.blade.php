@@ -26,7 +26,7 @@ var myChart = new Chart(ctx, {
         labels: {!!json_encode($currentmonthSalesAmountByDay->pluck("dayofmonth(created_at)"))!!},
         datasets: [{
             label: '# de ventas',
-            data: {!!json_encode($currentmonthSalesAmountByDay->pluck("sum"))!!},
+            data: {!!json_encode($currentmonthSalesAmountByDay->pluck("amountSold"))!!},
 
             backgroundColor: [
               'rgba(54, 162, 235, 1)'
