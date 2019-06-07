@@ -52,7 +52,7 @@ class CategoryController extends Controller
   $category = new Category;
   $category->fill($request->all());
   $category->save();
-
+notify()->flash('Categoria agregada correctamente','success');
   return redirect('/categorias/');
   }
 
@@ -76,7 +76,7 @@ class CategoryController extends Controller
 
   $category->fill($request->all());
   $category->save();
-
+notify()->flash('Categoria agregada correctamente','success');
   return redirect('/categorias/');
   }
   public function detail(Category $category)

@@ -47,7 +47,7 @@ class BrandController extends Controller
   $brand= new Brand;
   $brand->name= $request->name;
   $brand->save();
-
+notify()->flash('Marca agregada correctamente','success');
   return redirect('/marcas/');
   }
 
@@ -70,7 +70,7 @@ class BrandController extends Controller
 
   $brand->name= $request->name;
   $brand->save();
-
+notify()->flash('Marca editada correctamente','success');
   return redirect('/marcas/');
   }
   public function detail(Brand $brand)

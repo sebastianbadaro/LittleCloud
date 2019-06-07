@@ -63,7 +63,7 @@ class ClientController extends Controller
   $client = new Client;
   $client->fill($request->all());
   $client->save();
-
+  notify()->flash('Cliente agregado correctamente','success');
   return redirect('/clientes/');
   }
 
@@ -99,7 +99,7 @@ class ClientController extends Controller
 
   $client->fill($request->all());
   $client->save();
-
+notify()->flash('Cliente editado correctamente','success');
   return redirect('/clientes/');
   }
   public function detail(Client $client)

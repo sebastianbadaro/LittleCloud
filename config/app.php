@@ -165,7 +165,7 @@ return [
         /*
          * Package Service Providers...
          */
-
+         Codecourse\Notify\NotifyServiceProvider::class,
         /*
          * Application Service Providers...
          */

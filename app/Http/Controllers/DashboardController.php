@@ -55,6 +55,7 @@ public function MonthlySales()
 
 
 
+
   $today = Carbon::now();
 
   $currentMonthSales = DB::table('sales')
@@ -108,6 +109,8 @@ $currentmonthSalesAmountByDay =DB::table('product_sale')
     $thisMonthSoldItems = $currentmonthSalesAmountByDay->sum('soldItems');
 
 
+    
+
   return view('dashboards.dashboard',compact('currentMonthSales','currentmonthSalesAmountByDay','thisMonthTotalSales','thisMonthAmountOfSales','thisMonthSoldItems','dayweekHour'));
 }
 
@@ -141,7 +144,7 @@ $currentmonthSalesAmountByDay =DB::table('product_sale')
 
     $today = Carbon::now();
 
-
+  //  notify->flash('testing','error');
     // dd($categorias);
     $totalValueOfStock= Product::valueOfStock();
     $amountofItemsInStock = Product::amountofItemsInStock();

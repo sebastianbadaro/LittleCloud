@@ -52,6 +52,7 @@ class SaleController extends Controller
     }
       $sales = Sale::orderby('created_at','DESC')->with('client')->with('paymenttype')->get();
       event(new newSale($newSale));
+      notify()->flash('Venta realizada correctamente','success');
         return redirect('/ventas/');
   }
   public function detail(Sale $sale)

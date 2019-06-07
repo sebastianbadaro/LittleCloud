@@ -206,6 +206,7 @@ class ProductController extends Controller
     }
 
     }
+    flash()->success('Laradmin', 'User successfully created.');
     return redirect()->route('show-products');
   }
 }
