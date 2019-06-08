@@ -41,7 +41,7 @@
           </div>
         </div>
         <div class="box-body" style="height: 300px">
-          <canvas id="currentMonthSales" width="50" height="50"></canvas>
+          <canvas id="currentMonthSales" width="500" height="500"></canvas>
         </div>
         <!-- /.box-body -->
       </div>
@@ -56,7 +56,7 @@
       <!-- DONUT CHART -->
       <div class="box box-danger">
         <div class="box-header with-border">
-          <h3 class="box-title">Ventas del último mes</h3>
+          <h3 class="box-title">Articulos vendidos por subcategoria</h3>
 
           <div class="box-tools pull-right">
             <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -64,8 +64,8 @@
             <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
           </div>
         </div>
-        <div class="box-body" style="height: 300px">
-          <canvas id="scatterSales" width="100" height="100"></canvas>
+        <div class="box-body">
+          <canvas id="categorychart" ></canvas>
         </div>
         <!-- /.box-body -->
       </div>
@@ -74,32 +74,37 @@
   </div>
   <!-- /.box -->
 
-<script type="text/javascript">
-var ctx = document.getElementById("scatterSales").getContext('2d');
-var scatterChart = new Chart(ctx, {
-  type: 'scatter',
-  data: {
-      datasets: [{
-          label: 'Scatter Dataset',
-          data: {!!json_encode($dayweekHour)!!}
-      }]
-  },
-  options: {
-    responsive: true,
-    animation: {
-        duration: 1000, // general animation time
-    },
-    maintainAspectRatio: false,
-      scales: {
-            }
-  }
-});
-</script>
 
 
 
 
 
+  <script>
+  var ctx = document.getElementById("categorychart").getContext('2d');
+  var myChart = new Chart(ctx, {
+      type: 'doughnut',
+      data: {
+          labels: {!!json_encode($subcategorias->pluck("name"))!!},
+          datasets: [{
+              label: '# of Votes',
+              data: {!!json_encode($subcategorias->pluck("count"))!!},
+              backgroundColor: [
+                  'rgba(54, 162, 235, 1)',
+                  'rgba(255, 206, 86, 1)',
+                  'rgba(255, 99, 132, 1)',
+                  'rgba(75, 192, 192, 1)',
+                  'rgba(153, 102, 255, 1)',
+
+              ],
+
+              borderWidth: 1
+          }]
+      },
+      options: {
+
+      }
+  });
+  </script>
 
 
   <script>

@@ -85,16 +85,16 @@ $currentmonthSalesAmountByDay =DB::table('product_sale')
         // ->havingRaw('count > 0')
         ->get();
 
-        $dayweekHour =DB::table('sales')
-                ->select(DB::raw("DATE_FORMAT(created_at, '%H.%i') as x, DAYOFWEEK(created_at) as y"))
-                // ->whereMonth("created_at", $today->month)
-                // ->whereYear('created_at', $today->year)
-                // ->groupBy("dayofmonth(created_at)")
-                // ->orderby('dayofmonth(created_at)','ASC')
-                // ->havingRaw('count > 0')
+        $subcategorias = DB::table('categories')
+                ->join('products', 'categories.id', '=', 'products.category_id')
+                ->join('subcategories',  'categories.subcategory_id', '=', 'subcategories.id')
+                ->select(DB::raw('subcategories.name, sum(products.stock) as count'))
+                ->whereMonth("subcategories.created_at", $today->month)
+                ->whereYear('subcategories.created_at', $today->year)
+                ->groupBy('subcategories.name')
+                ->orderby('count','DESC')
+                ->havingRaw('count > 0')
                 ->get();
-
-                // dd($dayweekHour);
           //This is to add the missing date, when nothing was sold.
         for ($i=1; $i <= $today->day; $i++) {
           if(!$currentmonthSalesAmountByDay->contains('dayofmonth(created_at)',$i))
@@ -109,9 +109,9 @@ $currentmonthSalesAmountByDay =DB::table('product_sale')
     $thisMonthSoldItems = $currentmonthSalesAmountByDay->sum('soldItems');
 
 
-    
 
-  return view('dashboards.dashboard',compact('currentMonthSales','currentmonthSalesAmountByDay','thisMonthTotalSales','thisMonthAmountOfSales','thisMonthSoldItems','dayweekHour'));
+
+  return view('dashboards.dashboard',compact('currentMonthSales','currentmonthSalesAmountByDay','thisMonthTotalSales','thisMonthAmountOfSales','thisMonthSoldItems','subcategorias'));
 }
 
   public function Stock()
