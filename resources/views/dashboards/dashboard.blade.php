@@ -64,8 +64,8 @@
             <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
           </div>
         </div>
-        <div class="box-body">
-          <canvas id="categorychart" ></canvas>
+        <div class="box-body" style="height: 300px">
+          <canvas id="categorychart" width="500" height="500"></canvas>
         </div>
         <!-- /.box-body -->
       </div>
@@ -83,8 +83,8 @@
             <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
           </div>
         </div>
-        <div class="box-body">
-          <canvas id="brandchart" ></canvas>
+        <div class="box-body" style="height: 300px">
+          <canvas id="brandchart" width="500" height="500"></canvas>
         </div>
         <!-- /.box-body -->
       </div>
