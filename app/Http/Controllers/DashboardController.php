@@ -96,6 +96,17 @@ $currentmonthSalesAmountByDay =DB::table('product_sale')
                 ->orderby('count','DESC')
                 ->havingRaw('count > 0')
                 ->get();
+
+          $brands = DB::table('brands')
+                  ->join('products', 'brands.id', '=', 'products.brand_id')
+                  ->join('product_sale',  'products.id', '=', 'product_sale.product_id')
+                  ->select(DB::raw('brands.name, sum(product_sale.amount) as count'))
+                  ->whereMonth("product_sale.created_at", $today->month)
+                  ->whereYear('product_sale.created_at', $today->year)
+                  ->groupBy('brands.name')
+                  ->orderby('count','DESC')
+                  ->havingRaw('count > 0')
+                  ->get();
           //This is to add the missing date, when nothing was sold.
         for ($i=1; $i <= $today->day; $i++) {
           if(!$currentmonthSalesAmountByDay->contains('dayofmonth(created_at)',$i))
@@ -112,7 +123,7 @@ $currentmonthSalesAmountByDay =DB::table('product_sale')
 
 
 
-  return view('dashboards.dashboard',compact('currentMonthSales','currentmonthSalesAmountByDay','thisMonthTotalSales','thisMonthAmountOfSales','thisMonthSoldItems','subcategorias'));
+  return view('dashboards.dashboard',compact('currentMonthSales','currentmonthSalesAmountByDay','thisMonthTotalSales','thisMonthAmountOfSales','thisMonthSoldItems','subcategorias','brands'));
 }
 
   public function Stock()

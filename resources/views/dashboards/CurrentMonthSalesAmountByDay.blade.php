@@ -2,7 +2,7 @@
   <!-- DONUT CHART -->
   <div class="box box-danger">
     <div class="box-header with-border">
-      <h3 class="box-title">Ventas en $ del mes</h3>
+      <h3 class="box-title">Ventas en AR$ del mes</h3>
 
       <div class="box-tools pull-right">
         <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -25,7 +25,7 @@ var myChart = new Chart(ctx, {
     data: {
         labels: {!!json_encode($currentmonthSalesAmountByDay->pluck("dayofmonth(created_at)"))!!},
         datasets: [{
-            label: '# de ventas',
+            label: 'ventas en AR$',
             data: {!!json_encode($currentmonthSalesAmountByDay->pluck("amountSold"))!!},
 
             backgroundColor: [
@@ -44,13 +44,28 @@ var myChart = new Chart(ctx, {
           duration: 1000, // general animation time
       },
       maintainAspectRatio: false,
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero:true
-                }
-            }]
-        }
+
+      scales: {
+          yAxes: [{
+              ticks: {
+                  beginAtZero:true,
+                  precision: 0
+              },
+              scaleLabel: {
+               display: true,
+               labelString: 'Cantidad de ventas en AR$'
+              }
+          }],
+          xAxes: [{
+              ticks: {
+
+              },
+              scaleLabel: {
+               display: true,
+               labelString: 'Día del mes'
+              }
+          }]
+      }
     }
 });
 </script>
